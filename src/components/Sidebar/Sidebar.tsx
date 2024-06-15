@@ -1,45 +1,46 @@
 import Image from "next/image";
+import styles from "./sidebar.module.css"
 
 export function Sidebar() {
   return (
-    <div className="main__sidebar sidebar">
-      <div className="sidebar__personal">
-        <p className="sidebar__personal-name">Sergey.Ivanov</p>
-        <div className="sidebar__icon">
+    <div className={styles.mainSidebar}>
+      <div className={styles.sidebarPersonal}>
+        <p className={styles.sidebarPersonalName}>Sergey.Ivanov</p>
+        <div className={styles.sidebarIcon}>
           <svg>
             <use xlinkHref="img/icon/sprite.svg#logout" />
           </svg>
         </div>
       </div>
-      <div className="sidebar__block">
-        <div className="sidebar__list">
-          <div className="sidebar__item">
-            <a className="sidebar__link" href="#">
+      <div className={styles.sidebarBlock}>
+        <div className={styles.sidebarList}>
+          <div className={styles.sidebarItem}>
+            <a className={styles.sidebarLink} href="#">
               <Image
                 alt="day's playlist"
-                className="sidebar__img"
+                className={styles.sidebarImg}
                 src="/img/playlist01.png"
                 width={250}
                 height={150}
               />
             </a>
           </div>
-          <div className="sidebar__item">
-            <a className="sidebar__link" href="#">
+          <div className={styles.sidebarItem}>
+            <a className={styles.sidebarLink} href="#">
               <Image
                 alt="day's playlist"
-                className="sidebar__img"
+                className={styles.sidebarImg}
                 src="/img/playlist02.png"
                 width={250}
                 height={150}
               />
             </a>
           </div>
-          <div className="sidebar__item">
-            <a className="sidebar__link" href="#">
+          <div className={styles.sidebarItem}>
+            <a className={styles.sidebarLink} href="#">
               <Image
                 alt="day's playlist"
-                className="sidebar__img"
+                className={styles.sidebarImg}
                 src="/img/playlist03.png"
                 width={250}
                 height={150}
