@@ -1,15 +1,18 @@
+import styles from "./volume.module.css";
+
 export function Volume() {
+    const className = require('classnames');
   return (
-    <div className="bar__volume-block volume">
-      <div className="volume__content">
-        <div className="volume__image">
-          <svg className="volume__svg">
+    <div className={styles.barVolumeBlock}>
+      <div className={styles.volumeContent}>
+        <div className={styles.volumeImage}>
+          <svg className={styles.volumeSvg}>
             <use xlinkHref="img/icon/sprite.svg#icon-volume" />
           </svg>
         </div>
-        <div className="volume__progress _btn">
+        <div className={className(styles.volumeProgress, styles.btn)}>
           <input
-            className="volume__progress-line _btn"
+            className={className(styles.volumeProgressLine, styles.btn)}
             name="range"
             type="range"
           />
