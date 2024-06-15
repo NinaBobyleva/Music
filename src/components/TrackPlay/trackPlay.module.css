@@ -1,13 +1,10 @@
 .playerTrackPlay {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     flex-direction: row;
 }
   
 .trackPlayContain {
     width: auto;
-    display: -ms-grid;
     display: grid;
     grid-template-columns: auto 1fr;
     grid-template-areas: "image author" "image album";
@@ -18,8 +15,6 @@
     width: 51px;
     height: 51px;
     background-color: #313131;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -68,8 +63,6 @@
 }
   
 .trackPlayLikeDis {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     flex-direction: row;
     align-items: center;

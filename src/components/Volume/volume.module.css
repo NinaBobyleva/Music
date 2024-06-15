@@ -1,15 +1,11 @@
 .barVolumeBlock {
     width: auto;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     align-items: center;
     padding: 0 92px 0 0;
 }
   
 .volumeContent {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     flex-direction: row;
     align-items: center;

@@ -7,8 +7,6 @@
   }
   
   .barContent {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     flex-direction: column;
   }
@@ -21,16 +19,12 @@
   
   .barPlayerBlock {
     height: 73px;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
   }
   
   .barPlayer {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     flex-direction: row;
     align-items: center;

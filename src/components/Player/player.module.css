@@ -1,6 +1,4 @@
 .playerControls {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     flex-direction: row;
     padding: 0 27px 0 31px;
@@ -12,8 +10,6 @@
 .playerBtnRepeat,
 .playerBtnShuffle {
     padding: 5px;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     align-items: center;
 }
@@ -61,8 +57,6 @@
 }
   
 .playerBtnShuffle {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     align-items: center;
 }
