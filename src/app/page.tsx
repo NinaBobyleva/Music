@@ -3,6 +3,7 @@ import styles from "./page.module.css";
 import { Tracks } from "@/components/Tracks/Tracks";
 import { Sidebar } from "@/components/Sidebar/Sidebar";
 import { Bar } from "@/components/Bar/Bar";
+import { Search } from "@/components/Search/Search";
 
 export default function Home() {
   return (
@@ -45,17 +46,7 @@ export default function Home() {
             </div>
           </nav>
           <div className="main__centerblock centerblock">
-            <div className="centerblock__search search">
-              <svg className="search__svg">
-                <use xlinkHref="img/icon/sprite.svg#icon-search" />
-              </svg>
-              <input
-                className="search__text"
-                name="search"
-                placeholder="Поиск"
-                type="search"
-              />
-            </div>
+            <Search />
             <Tracks />
           </div>
           <Sidebar />
