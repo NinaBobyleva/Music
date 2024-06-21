@@ -1,8 +1,11 @@
+'use client'
+import { useState } from "react";
 import { Menu } from "../Menu/Menu";
 import styles from "./navigation.module.css";
 import Image from "next/image";
 
 export function Navigation() {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
     <nav className={styles.mainNav}>
       <div className={styles.navLogo}>
@@ -14,12 +17,12 @@ export function Navigation() {
           height={17}
         />
       </div>
-      <div className={styles.navBurger}>
+      <div onClick={() => setIsOpen((prev) => !prev)} className={styles.navBurger}>
         <span className={styles.burgerLine} />
         <span className={styles.burgerLine} />
         <span className={styles.burgerLine} />
       </div>
-      <Menu />
+      {isOpen && <Menu />}
     </nav>
   );
 }

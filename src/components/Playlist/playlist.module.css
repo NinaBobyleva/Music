@@ -48,5 +48,6 @@
 .contentPlaylist {
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
+    overflow: auto;
+    height: 700px;
 }
