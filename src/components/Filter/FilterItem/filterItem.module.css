@@ -38,6 +38,8 @@
     border-radius: 12px;
     background: #313131;
     overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #ffffff #4B4949;
 }
 
 .filterList {
