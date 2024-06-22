@@ -1,0 +1,51 @@
+.filterButton {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    border: 1px solid #ffffff;
+    border-radius: 60px;
+    padding: 6px 20px;
+}
+  
+/* .filterButton:not(:last-child) {
+    margin-right: 10px;
+} */
+
+.btnText:hover {
+    border-color: #d9b6ff;
+    color: #d9b6ff;
+    cursor: pointer;
+}
+
+.btnText:active {
+    border-color: #ad61ff;
+    color: #ad61ff;
+    cursor: pointer;
+}
+
+.filterContainer {
+    position: absolute;
+}
+
+.filterBox {
+    position: relative;
+    top: 15px;
+    z-index: 100;
+    width: 248px;
+    height: 305px;
+    padding: 34px;
+    border-radius: 12px;
+    background: #313131;
+    overflow: auto;
+}
+
+.filterList {
+    width: 152px;
+    height: 24px;
+    font-family: StratosSkyeng;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+}

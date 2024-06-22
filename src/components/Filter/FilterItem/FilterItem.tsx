@@ -1,15 +1,39 @@
 import classNames from "classnames";
-import styles from "../filter.module.css";
+import styles from "./filterItem.module.css";
 
-export function FilterItem() {
-    return (
-        <div className={styles.filterWrapper}>
-            <div className={classNames(styles.filterButton, styles.btnText)}>исполнителю</div>
-            <ul>
-                <li>
-                    
-                </li>
-            </ul>
-        </div>
-    )
+type FilterItemProps = {
+  title: string;
+  isActive: boolean;
+  handleFilter: (newFilter: string) => void;
+  list: string[];
+};
+
+export function FilterItem({
+  title,
+  isActive,
+  handleFilter,
+  list,
+}: FilterItemProps) {
+    console.log(title);
+  return (
+    <div className={styles.filterWrapper}>
+      <div
+        onClick={() => handleFilter(title)}
+        className={classNames(styles.filterButton, styles.btnText)}
+      >
+        {title}
+      </div>
+        {isActive && (
+          <div className={styles.filterContainer}>
+            <ul className={styles.filterBox}>
+            {list.map((item, index) => (
+              <li key={index} className={styles.filterList}>
+                {item}
+              </li>
+            ))}
+          </ul>
+          </div>
+        )}
+    </div>
+  );
 }

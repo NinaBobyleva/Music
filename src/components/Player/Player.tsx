@@ -1,7 +1,7 @@
 import styles from "./player.module.css";
+import classNames from "classnames";
 
 export function Player() {
-    const className = require('classnames');
   return (
     <div className={styles.playerControls}>
       <div className={styles.playerBtnPrev}>
@@ -9,7 +9,7 @@ export function Player() {
           <use xlinkHref="img/icon/sprite.svg#icon-prev" />
         </svg>
       </div>
-      <div className={className(styles.playerBtnPlay, styles.btn)}>
+      <div className={classNames(styles.playerBtnPlay, styles.btn)}>
         <svg className={styles.playerBtnPlaySvg}>
           <use xlinkHref="img/icon/sprite.svg#icon-play" />
         </svg>
@@ -19,12 +19,12 @@ export function Player() {
           <use xlinkHref="img/icon/sprite.svg#icon-next" />
         </svg>
       </div>
-      <div className={className(styles.playerBtnRepeat, styles.btnIcon)}>
+      <div className={classNames(styles.playerBtnRepeat, styles.btnIcon)}>
         <svg className={styles.playerBtnRepeatSvg}>
           <use xlinkHref="img/icon/sprite.svg#icon-repeat" />
         </svg>
       </div>
-      <div className={className(styles.playerBtnShuffle, styles.btnIcon)}>
+      <div className={classNames(styles.playerBtnShuffle, styles.btnIcon)}>
         <svg className={styles.playerBtnShuffleSvg}>
           <use xlinkHref="img/icon/sprite.svg#icon-shuffle" />
         </svg>

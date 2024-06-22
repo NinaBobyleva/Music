@@ -6,7 +6,7 @@ type TrackProps = {
 };
 
 export function Track({ track }: TrackProps) {
-  const { name, author } = track;
+  const { name, author, album } = track;
   return (
     <div className={styles.playlistItem}>
       <div className={styles.playlistTrack}>
@@ -26,9 +26,9 @@ export function Track({ track }: TrackProps) {
           <span className={styles.trackAuthorLink}>{author}</span>
         </div>
         <div className={styles.trackAlbum}>
-          <a className={styles.trackAlbumLink} href="http://">
-            Welcome Reality
-          </a>
+          <span className={styles.trackAlbumLink}>
+            {album}
+          </span>
         </div>
         <div>
           <svg className={styles.trackTimeSvg}>

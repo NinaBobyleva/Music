@@ -14,6 +14,7 @@ export async function Tracks() {
   }
   return (
     <>
+      {error && error}
       <h2 className={styles.centerblockH2}>Треки</h2>
       <Filter tracks={tracks} />
       <Playlist tracks={tracks}/>
