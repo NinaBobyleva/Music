@@ -19,7 +19,7 @@ export function FilterItem({
     <div className={styles.filterWrapper}>
       <div
         onClick={() => handleFilter(title)}
-        className={classNames(styles.filterButton, styles.btnText)}
+        className={classNames(isActive ? styles.filterButtonActive : styles.filterButton, styles.btnText)}
       >
         {title}
       </div>
