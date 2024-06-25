@@ -35,7 +35,6 @@ export function Filter({ tracks }: FilterProps) {
       list: getUniqueGenre,
     },
   ];
-  console.log(filters);
 
   return (
     <div className={styles.centerblockFilter}>
