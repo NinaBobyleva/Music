@@ -15,12 +15,15 @@
         <ellipse cx="4.5" cy="16" rx="3.5" ry="2" stroke="#4E4E4E"/>
         <ellipse cx="15.5" cy="13" rx="3.5" ry="2" stroke="#4E4E4E"/>
     </symbol>
-    <symbol id="icon-volume" fill="none" viewBox="0 0 14 18" xmlns="http://www.w3.org/2000/svg">
-        <mask id="path-1-inside-1_2985_507" fill="white">
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0L3 5H0V13H3L8 18V0Z"/>
+    <symbol id="icon-volume" width="140" height="18" viewBox="0 0 140 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M56.7437 9H30.7437" stroke="white" stroke-width="2"/>
+        <path d="M139.744 9H59.7437" stroke="#797979" stroke-width="2"/>
+        <circle cx="57.7437" cy="9" r="5" fill="#1A1A1A" stroke="white" stroke-width="2"/>
+        <mask id="path-4-inside-1_1_3003" fill="white">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M8.74365 0L3.74365 5H0.743652V13H3.74365L8.74365 18V0Z"/>
         </mask>
-        <path d="M3 5V6H3.41421L3.70711 5.70711L3 5ZM8 0H9V-2.41421L7.29289 -0.707107L8 0ZM0 5V4H-1V5H0ZM0 13H-1V14H0V13ZM3 13L3.70711 12.2929L3.41421 12H3V13ZM8 18L7.29289 18.7071L9 20.4142V18H8ZM3.70711 5.70711L8.70711 0.707107L7.29289 -0.707107L2.29289 4.29289L3.70711 5.70711ZM0 6H3V4H0V6ZM1 13V5H-1V13H1ZM3 12H0V14H3V12ZM8.70711 17.2929L3.70711 12.2929L2.29289 13.7071L7.29289 18.7071L8.70711 17.2929ZM7 0V18H9V0H7Z" fill="white" mask="url(#path-1-inside-1_2985_507)"/>
-        <path d="M11 13C12.1046 13 13 11.2091 13 9C13 6.79086 12.1046 5 11 5" stroke="white"/>
+        <path d="M3.74365 5V6H4.15787L4.45076 5.70711L3.74365 5ZM8.74365 0H9.74365V-2.41421L8.03655 -0.707107L8.74365 0ZM0.743652 5V4H-0.256348V5H0.743652ZM0.743652 13H-0.256348V14H0.743652V13ZM3.74365 13L4.45076 12.2929L4.15787 12H3.74365V13ZM8.74365 18L8.03655 18.7071L9.74365 20.4142V18H8.74365ZM4.45076 5.70711L9.45076 0.707107L8.03655 -0.707107L3.03655 4.29289L4.45076 5.70711ZM0.743652 6H3.74365V4H0.743652V6ZM1.74365 13V5H-0.256348V13H1.74365ZM3.74365 12H0.743652V14H3.74365V12ZM9.45076 17.2929L4.45076 12.2929L3.03655 13.7071L8.03655 18.7071L9.45076 17.2929ZM7.74365 0V18H9.74365V0H7.74365Z" fill="white" mask="url(#path-4-inside-1_1_3003)"/>
+        <path d="M11.7437 13C12.8482 13 13.7437 11.2091 13.7437 9C13.7437 6.79086 12.8482 5 11.7437 5" stroke="white"/>
     </symbol>
     <symbol id="icon-dislike"  viewBox="0 0 16 15"  xmlns="http://www.w3.org/2000/svg">
         <path d="M8.34372 3.25572H8.36529C9.29718 2.44175 11.7563 1.16576 13.9565 2.76734C17.3111 5.20921 14.2458 10.5 8.36529 14H8.34372M8.34378 3.25572H8.32221C7.39032 2.44175 4.93121 1.16576 2.73102 2.76734C-0.623552 5.20921 2.44172 10.5 8.32221 14H8.34378" />
@@ -49,7 +52,9 @@
         <path d="M25.6711 16.046V14.7419C25.6711 13.2276 24.4435 12 22.9292 12H16.7419C15.2276 12 14 13.2276 14 14.7419V26.0645C14 27.5788 15.2276 28.8065 16.7419 28.8065H22.9292C24.4435 28.8065 25.6711 27.5788 25.6711 26.0645V24.6048M18.3572 20.3254H33.2963M33.2963 20.3254L30.1062 23.5155M33.2963 20.3254L30.1062 17.1353" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
         <circle cx="20" cy="20" r="19.5" stroke="white"/>
     </symbol> 
-    <symbol id='circle' width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="13" cy="12.75" rx="13" ry="12.75" fill="#AD61FF"/>
+    <symbol id='icon-pause' width="15" height="19" viewBox="0 0 15 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="5" height="19" fill="#D9D9D9"/>
+        <rect x="10" width="5" height="19" fill="#D9D9D9"/>
     </symbol>
+    <symbol></symbol>
 </svg>

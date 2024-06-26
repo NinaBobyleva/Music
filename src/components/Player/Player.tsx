@@ -1,7 +1,12 @@
 import styles from "./player.module.css";
 import classNames from "classnames";
 
-export function Player() {
+type PlayerProps = {
+  isPlaying: boolean,
+  handlePlay: () => void
+}
+
+export function Player({isPlaying ,handlePlay}: PlayerProps) {
   return (
     <div className={styles.playerControls}>
       <div className={styles.playerBtnPrev}>
@@ -9,10 +14,12 @@ export function Player() {
           <use xlinkHref="img/icon/sprite.svg#icon-prev" />
         </svg>
       </div>
-      <div className={classNames(styles.playerBtnPlay, styles.btn)}>
-        <svg className={styles.playerBtnPlaySvg}>
+      <div onClick={handlePlay} className={classNames(styles.playerBtnPlay, styles.btn)}>
+        {isPlaying ? (<svg className={styles.playerBtnPlaySvg}>
+          <use xlinkHref="img/icon/sprite.svg#icon-pause" />
+        </svg>) : (<svg className={styles.playerBtnPlaySvg}>
           <use xlinkHref="img/icon/sprite.svg#icon-play" />
-        </svg>
+        </svg>)}
       </div>
       <div className={styles.playerBtnNext}>
         <svg className={styles.playerBtnNextSvg}>

@@ -1,7 +1,20 @@
+import { useEffect, useState } from "react";
 import styles from "./volume.module.css";
 import classNames from "classnames";
 
-export function Volume() {
+type VolumeProps = {
+  audio: HTMLAudioElement | null,
+}
+
+export function Volume({audio}: VolumeProps) {
+  const [volume, setVolume] = useState<number>(0.5);
+
+  useEffect(() => {
+    if (audio) {
+        audio.volume = volume;
+    }
+}, [volume]);
+
   return (
     <div className={styles.barVolumeBlock}>
       <div className={styles.volumeContent}>
@@ -15,6 +28,11 @@ export function Volume() {
             className={classNames(styles.volumeProgressLine, styles.btn)}
             name="range"
             type="range"
+            min={0}
+            max={1}
+            step={0.01}
+            value={volume}
+            onChange={(e) => setVolume(Number(e.target.value))}
           />
         </div>
       </div>
