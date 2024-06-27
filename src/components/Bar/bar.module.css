@@ -34,3 +34,7 @@
   .audio {
     display: none;
   }
+
+  .wrapper {
+    display: flex;
+  }

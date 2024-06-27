@@ -25,7 +25,7 @@ export function Volume({audio}: VolumeProps) {
         </div>
         <div className={classNames(styles.volumeProgress, styles.btn)}>
           <input
-            className={classNames(styles.volumeProgressLine, styles.btn)}
+            className={classNames(styles.volumeProgressLine, styles.btn, styles.input)}
             name="range"
             type="range"
             min={0}

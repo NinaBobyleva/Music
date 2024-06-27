@@ -3,13 +3,20 @@ import classNames from "classnames";
 
 type PlayerProps = {
   isPlaying: boolean,
-  handlePlay: () => void
+  isLoop: boolean,
+  handlePlay: () => void,
+  handleLoop: () => void
 }
 
-export function Player({isPlaying ,handlePlay}: PlayerProps) {
+export function Player({isPlaying, isLoop, handlePlay, handleLoop}: PlayerProps) {
+
+  const svg = () => {
+    alert("Еще не реализовано")
+  }
+
   return (
     <div className={styles.playerControls}>
-      <div className={styles.playerBtnPrev}>
+      <div onClick={svg} className={styles.playerBtnPrev}>
         <svg className={styles.playerBtnPrevSvg}>
           <use xlinkHref="img/icon/sprite.svg#icon-prev" />
         </svg>
@@ -21,17 +28,17 @@ export function Player({isPlaying ,handlePlay}: PlayerProps) {
           <use xlinkHref="img/icon/sprite.svg#icon-play" />
         </svg>)}
       </div>
-      <div className={styles.playerBtnNext}>
+      <div onClick={svg} className={styles.playerBtnNext}>
         <svg className={styles.playerBtnNextSvg}>
           <use xlinkHref="img/icon/sprite.svg#icon-next" />
         </svg>
       </div>
-      <div className={classNames(styles.playerBtnRepeat, styles.btnIcon)}>
-        <svg className={styles.playerBtnRepeatSvg}>
+      <div onClick={handleLoop} className={classNames(styles.playerBtnRepeat, styles.btnIcon)}>
+        <svg className={isLoop ? classNames(styles.playerBtnRepeatSvgActive, styles.btnIcon) : (styles.playerBtnRepeatSvg)}>
           <use xlinkHref="img/icon/sprite.svg#icon-repeat" />
         </svg>
       </div>
-      <div className={classNames(styles.playerBtnShuffle, styles.btnIcon)}>
+      <div onClick={svg} className={classNames(styles.playerBtnShuffle, styles.btnIcon)}>
         <svg className={styles.playerBtnShuffleSvg}>
           <use xlinkHref="img/icon/sprite.svg#icon-shuffle" />
         </svg>
