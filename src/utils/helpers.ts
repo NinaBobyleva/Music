@@ -1,9 +1,9 @@
-export const timeFormat = (time: number) => {
+export const timeFormat = (time: number | any) => {
     const minutes = Math.floor(time / 60);
-    const seconds = time % 60;
-    let finalTime = `${minutes}:${seconds.toFixed(0)}`;
+    const seconds = time.toFixed(0) % 60;
+    let finalTime = `${minutes}:${seconds}`;
     if (seconds < 10) {
-        return finalTime = `${minutes}:${`0${seconds.toFixed(0)}`}`;
+        finalTime = `${minutes}:0${seconds}`;
     }
     return finalTime;
 }

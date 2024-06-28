@@ -53,7 +53,6 @@ export function Bar() {
     setIsLoop((prev) => !prev);
   };
 
-  console.log(isPlaying);
   audioRef.current?.addEventListener('ended', () => setIsPlaying(false));
 
   return (
