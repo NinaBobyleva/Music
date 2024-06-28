@@ -28,14 +28,14 @@
   width: 109px;
 }
 
-.volumeProgressLine {
+/* .volumeProgressLine {
   appearance: none;
   border: 1px solid #797979;
   width: 109px;
   height: 2px;
-}
+} */
 
-.volumeProgressLine::-webkit-slider-thumb {
+/* .volumeProgressLine::-webkit-slider-thumb {
   -webkit-appearance: none;
   background: #1A1A1A;
   width: 12px;
@@ -43,13 +43,9 @@
   border: 2px solid #ffff;
   border-radius: 12px;
   cursor: pointer;
-}
-
-/* .volumeProgressLine::-webkit-slider-runnable-track {
-  background: #fff;
 } */
   
-/* .volumeProgressLine {
+.volumeProgressLine {
   width: 109px;
   --progress-height: 3px;
   --progress-color: #fff;
@@ -63,15 +59,15 @@
   position: relative;
   overflow: hidden;
   transition: 0.2s;
-} */
+}
 
-/* .volumeProgressLine::-webkit-slider-runnable-track {
+.volumeProgressLine::-webkit-slider-runnable-track {
   position: relative;
   height: var(--progress-height);
   background: var(--progress-bg-color);
-} */
+}
   
-  /* .volumeProgressLine::-webkit-slider-thumb {
+  .volumeProgressLine::-webkit-slider-thumb {
     --thumb-height: 1px;
     --thumb-width: 1px;
     position: relative;
@@ -79,9 +75,9 @@
     width: var(--thumb-width, var(--thumb-height));
     box-shadow: calc(-100vmax - var(--thumb-width, var(--thumb-height))) 0 0
       100vmax var(--progress-color);
-  } */
+  }
   
-  /* .volumeProgressLine::-webkit-slider-runnable-track {
+  .volumeProgressLine::-webkit-slider-runnable-track {
     background: var(--progress-bg-color);
   }
 
@@ -104,7 +100,7 @@
   .volumeProgressLine::-moz-range-progress {
     background-color: var(--progress-color);
     height: var(--progress-height);
-  } */
+  }
 
 .btn {
     cursor: pointer;
