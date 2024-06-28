@@ -1,56 +1,77 @@
 .barVolumeBlock {
-    width: auto;
-    display: flex;
-    align-items: center;
-    padding: 0 50px 0 0;
+  width: auto;
+  display: flex;
+  align-items: center;
+  padding: 0 50px 0 0;
 }
   
 .volumeContent {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: end;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: end;
 }
   
 .volumeImage {
-    width: 13px;
-    height: 18px;
-    margin-right: 17px;
+  width: 13px;
+  height: 18px;
+  margin-right: 17px;
 }
   
 .volumeSvg {
-    width: 15px;
-    height: 18px;
-    fill: transparent;
+  width: 15px;
+  height: 18px;
+  fill: transparent;
 }
   
 .volumeProgress {
-    width: 109px;
-}
-  
-.volumeProgressLine {
-    width: 109px;
-    --progress-height: 3px;
-    --progress-color: #fff;
-    --progress-bg-color: #797979;
-    margin-bottom: 10px;
-    width: 100%;
-    height: var(--progress-height);
-    appearance: none;
-    cursor: pointer;
-    background: transparent;
-    position: relative;
-    overflow: hidden;
-    transition: 0.2s;
+  width: 109px;
 }
 
-.volumeProgressLine::-webkit-slider-runnable-track {
-    position: relative;
-    height: var(--progress-height);
-    background: var(--progress-bg-color);
-  }
+.volumeProgressLine {
+  appearance: none;
+  border: 1px solid #797979;
+  width: 109px;
+  height: 2px;
+}
+
+.volumeProgressLine::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background: #1A1A1A;
+  width: 12px;
+  height: 12px;
+  border: 2px solid #ffff;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+/* .volumeProgressLine::-webkit-slider-runnable-track {
+  background: #fff;
+} */
   
-  .volumeProgressLine::-webkit-slider-thumb {
+/* .volumeProgressLine {
+  width: 109px;
+  --progress-height: 3px;
+  --progress-color: #fff;
+  --progress-bg-color: #797979;
+  margin-bottom: 10px;
+  width: 100%;
+  height: var(--progress-height);
+  appearance: none;
+  cursor: pointer;
+  background: transparent;
+  position: relative;
+  overflow: hidden;
+  transition: 0.2s;
+} */
+
+/* .volumeProgressLine::-webkit-slider-runnable-track {
+  position: relative;
+  height: var(--progress-height);
+  background: var(--progress-bg-color);
+} */
+  
+  /* .volumeProgressLine::-webkit-slider-thumb {
     --thumb-height: 1px;
     --thumb-width: 1px;
     position: relative;
@@ -58,9 +79,9 @@
     width: var(--thumb-width, var(--thumb-height));
     box-shadow: calc(-100vmax - var(--thumb-width, var(--thumb-height))) 0 0
       100vmax var(--progress-color);
-  }
+  } */
   
-  .volumeProgressLine::-webkit-slider-runnable-track {
+  /* .volumeProgressLine::-webkit-slider-runnable-track {
     background: var(--progress-bg-color);
   }
 
@@ -83,7 +104,7 @@
   .volumeProgressLine::-moz-range-progress {
     background-color: var(--progress-color);
     height: var(--progress-height);
-  }
+  } */
 
 .btn {
     cursor: pointer;
