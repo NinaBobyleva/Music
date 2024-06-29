@@ -2,7 +2,6 @@
   width: auto;
   display: flex;
   align-items: center;
-  padding: 0 50px 0 0;
 }
   
 .volumeContent {
@@ -25,7 +24,7 @@
 }
   
 .volumeProgress {
-  width: 109px;
+  width: 159px;
 }
 
 /* .volumeProgressLine {
@@ -47,16 +46,15 @@
   
 .volumeProgressLine {
   width: 109px;
-  --progress-height: 3px;
+  --progress-height: 5px;
   --progress-color: #fff;
   --progress-bg-color: #797979;
-  margin-bottom: 10px;
-  width: 100%;
   height: var(--progress-height);
   appearance: none;
   cursor: pointer;
   background: transparent;
-  position: relative;
+  position: absolute;
+  top: 39px;
   overflow: hidden;
   transition: 0.2s;
 }
