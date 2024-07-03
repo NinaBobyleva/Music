@@ -19,6 +19,8 @@ export function Bar() {
   }
   const { name, author, track_file } = currentTrack;
 
+  console.log(currentTrack);
+
   const duration = audioRef.current?.duration || 0;
 
   const handlePlay = () => {

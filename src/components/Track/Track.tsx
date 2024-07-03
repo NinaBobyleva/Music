@@ -18,6 +18,8 @@ export function Track({ track }: TrackProps) {
     setCurrentTrack(track);
   }
 
+  console.log(track.id);
+
   useEffect(() => {
     audioRef.current?.play();
     setIsPlaying(true);
