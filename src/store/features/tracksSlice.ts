@@ -18,7 +18,7 @@ const initialState: InitialStateType = {
 };
 
 const tracksSlice = createSlice({
-  name: "current",
+  name: "tracks",
   initialState,
   reducers: {
     setCurrentPlaylist: (state, action: PayloadAction<TrackType[]>) => {
@@ -34,11 +34,11 @@ const tracksSlice = createSlice({
     },
     setPrev: (state) => {
       const currentIdx = state.currentPlaylist.findIndex((track) => track.id === state.currentTrack?.id);
-      console.log(currentIdx);
       if (!currentIdx) {
         return;
       }
       state.currentTrack = state.currentPlaylist[currentIdx - 1];
+      state.isPlaying = true;
     },
     setNext: (state) => {
       const currentIdx = state.currentPlaylist.findIndex((track) => track.id === state.currentTrack?.id);
@@ -46,6 +46,7 @@ const tracksSlice = createSlice({
         return;
       }
       state.currentTrack = state.currentPlaylist[currentIdx + 1];
+      state.isPlaying = true;
     },
     setShuffle: (state, action: PayloadAction<boolean>) => {
       state.isShuffle = action.payload;

@@ -20,10 +20,17 @@ export function Bar() {
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [isLoop, setIsLoop] = useState<boolean>(false);
 
+  const audio = audioRef.current;
+
+  const handleEnded = () => {
+    dispatch(setNext());
+  }
+
   useEffect(() => {
-    audioRef.current?.addEventListener("ended", () => dispatch(setNext()));
-    return () => audioRef.current?.removeEventListener("ended", () => dispatch(setNext()));
-  }, [dispatch, audioRef, currentTrack])
+    audio?.addEventListener("ended", handleEnded);
+    audio?.play();
+    return () => audio?.removeEventListener("ended", () => handleEnded);
+  }, [audio])
 
   if (!currentTrack) {
     return null;

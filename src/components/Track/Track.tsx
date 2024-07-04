@@ -27,8 +27,7 @@ export function Track({ track }: TrackProps) {
 
   useEffect(() => {
     audioRef.current?.play();
-    dispatch(setIsPlaying(true));
-  }, [currentTrack]);
+  }, [audioRef, currentTrack]);
 
   const time = timeFormat(duration_in_seconds);
 
