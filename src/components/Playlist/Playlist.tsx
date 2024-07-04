@@ -4,7 +4,7 @@ import { Track } from "../Track/Track";
 import styles from "./playlist.module.css";
 import classNames from "classnames";
 import { useAppDispatch } from "@/store/store";
-import { setCurrentPlaylist } from "@/store/features/currentSlice";
+import { setCurrentPlaylist } from "@/store/features/tracksSlice";
 
 type PlaylistProps = {
   tracks: TrackType[];

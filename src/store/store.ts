@@ -6,14 +6,13 @@ import {
   useSelector,
   useStore,
 } from "react-redux";
-// import { currentReducers } from "./features/currentTrackSlice";
-import { currentReducers } from "./features/currentSlice";
+import { tracksReducers } from "./features/tracksSlice";
 
 export const makeStore = () => {
   return configureStore({
     reducer: combineReducers({
       auth: authReducers,
-      current: currentReducers,
+      tracks: tracksReducers,
     }),
   });
 };
