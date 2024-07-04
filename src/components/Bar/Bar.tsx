@@ -1,24 +1,22 @@
 "use client";
-import { useCurrentTrack } from "@/contexts/CurrentTrackProvider";
+import { useCurrentTrack } from "@/contexts/CurrentProvider";
 import { Player } from "../Player/Player";
 import { TrackPlay } from "../TrackPlay/TrackPlay";
 import { Volume } from "../Volume/Volume";
 import styles from "./bar.module.css";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import ProgressBar from "./ProgressBar/ProgressBar";
 import { CurrentTimeBlock } from "./CurrentTimeBlock/CurrentTimeBlock";
 import { useAppSelector } from "@/store/store";
 
 export function Bar() {
   const { isPlaying, setIsPlaying, audioRef } = useCurrentTrack();
-  const currentTrack = useAppSelector((state) => state.current.currentTrackState);
+  const currentTrack = useAppSelector(
+    (state) => state.current.currentTrackState
+  );
   console.log(currentTrack);
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [isLoop, setIsLoop] = useState<boolean>(false);
-  // const [isPlaying, setIsPlaying] = useState<boolean>(false);
-  // const isPlaying = useAppSelector((state) => state.play.playState);
-  // const audioRef = useRef<HTMLAudioElement | null>(null);
-  // const dispatch = useAppDispatch();
 
   if (!currentTrack) {
     return null;
@@ -59,7 +57,7 @@ export function Bar() {
     setIsLoop((prev) => !prev);
   };
 
-  audioRef.current?.addEventListener('ended', () => setIsPlaying(false));
+  audioRef.current?.addEventListener("ended", () => setIsPlaying(false));
 
   return (
     <div className={styles.bar}>

@@ -12,8 +12,6 @@ import {
 } from "react";
 
 type CurrentTrackContextValue = {
-  // currentTrack: TrackType | null;
-  // setCurrentTrack: Dispatch<SetStateAction<TrackType | null>>;
   isPlaying: boolean;
   setIsPlaying: Dispatch<SetStateAction<boolean>>;
   audioRef: MutableRefObject<HTMLAudioElement | null>;
@@ -27,7 +25,6 @@ type CurrentTrackProviderProps = {
 };
 
 export function CurrentTrackProvider({ children }: CurrentTrackProviderProps) {
-  // const [currentTrack, setCurrentTrack] = useState<TrackType | null>(null);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 

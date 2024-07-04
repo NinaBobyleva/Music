@@ -1,12 +1,13 @@
 "use client";
 import { TrackType } from "@/types/tracks";
 import styles from "./track.module.css";
-import { useCurrentTrack } from "@/contexts/CurrentTrackProvider";
+import { useCurrentTrack } from "@/contexts/CurrentProvider";
 import { timeFormat } from "../../utils/helpers";
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import classNames from "classnames";
 import { useAppDispatch, useAppSelector } from "@/store/store";
-import { setCurrentTrack } from "@/store/features/currentTrackSlice";
+import { setCurrentTrack } from "@/store/features/currentSlice";
+
 
 type TrackProps = {
   track: TrackType;
@@ -14,25 +15,20 @@ type TrackProps = {
 
 export function Track({ track }: TrackProps) {
   const { isPlaying, setIsPlaying, audioRef } = useCurrentTrack();
-  // const [isPlaying, setIsPlaying] = useState<boolean>(false);
-  // const audioRef = useRef<HTMLAudioElement | null>(null);
   const { name, author, album, duration_in_seconds } = track;
-  const currentTrack = useAppSelector((state) => state.current.currentTrackState);
-  // const isPlaying = useAppSelector((state) => state.play.playState);
+  const currentTrack = useAppSelector(
+    (state) => state.current.currentTrackState
+  );
   const dispatch = useAppDispatch();
-
-  // useEffect(() => {
-  //   dispatch(setCurrentTrack(track));
-  // }, [dispatch])
 
   const handleTrackClick = () => {
     dispatch(setCurrentTrack(track));
-  }
+  };
 
   useEffect(() => {
     audioRef.current?.play();
     setIsPlaying(true);
-  }, [currentTrack])
+  }, [currentTrack]);
 
   const time = timeFormat(duration_in_seconds);
 
@@ -41,11 +37,21 @@ export function Track({ track }: TrackProps) {
       <div className={styles.playlistTrack}>
         <div className={styles.trackTitle}>
           <div className={styles.trackTitleImage}>
-            {currentTrack?.id === track.id ? (<svg className={isPlaying ? classNames(styles.trackTitleSvg, styles.playingDot) : styles.trackTitleSvg}>
-              <use xlinkHref="img/icon/sprite.svg#icon-dot" />
-            </svg>) : (<svg className={styles.trackTitleSvg}>
-              <use xlinkHref="img/icon/sprite.svg#icon-note" />
-            </svg>)}
+            {currentTrack?.id === track.id ? (
+              <svg
+                className={
+                  isPlaying
+                    ? classNames(styles.trackTitleSvg, styles.playingDot)
+                    : styles.trackTitleSvg
+                }
+              >
+                <use xlinkHref="img/icon/sprite.svg#icon-dot" />
+              </svg>
+            ) : (
+              <svg className={styles.trackTitleSvg}>
+                <use xlinkHref="img/icon/sprite.svg#icon-note" />
+              </svg>
+            )}
           </div>
           <div>
             <span className={styles.trackTitleLink}>

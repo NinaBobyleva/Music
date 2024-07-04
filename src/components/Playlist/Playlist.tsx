@@ -1,13 +1,20 @@
+"use client";
 import { TrackType } from "@/types/tracks";
 import { Track } from "../Track/Track";
 import styles from "./playlist.module.css";
 import classNames from "classnames";
+import { useAppDispatch } from "@/store/store";
+import { setCurrentPlaylist } from "@/store/features/currentSlice";
 
 type PlaylistProps = {
   tracks: TrackType[];
 };
 
 export function Playlist({ tracks }: PlaylistProps) {
+  const dispatch = useAppDispatch();
+
+  dispatch(setCurrentPlaylist(tracks));
+
   return (
     <div className={styles.centerblockContent}>
       <div className={styles.contentTitle}>
@@ -27,7 +34,9 @@ export function Playlist({ tracks }: PlaylistProps) {
         </div>
       </div>
       <div className={styles.contentPlaylist}>
-        {tracks.map((track) => <Track key={track.id} track={track} />)}
+        {tracks.map((track) => (
+          <Track key={track.id} track={track} />
+        ))}
       </div>
     </div>
   );
