@@ -30,9 +30,6 @@ export function Player({
 
   const handleShuffleTracks = () => {
     dispatch(setShuffle(!isShuffle));
-    // if (!isShuffle) {
-    //   dispatch(setNext());
-    // }
   };
 
   return (

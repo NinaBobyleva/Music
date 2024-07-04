@@ -22,15 +22,11 @@ export function Bar() {
 
   const audio = audioRef.current;
 
-  const handleEnded = () => {
-    dispatch(setNext());
-  }
-
   useEffect(() => {
-    audio?.addEventListener("ended", handleEnded);
+    audio?.addEventListener("ended", () => dispatch(setNext()));
     audio?.play();
-    return () => audio?.removeEventListener("ended", () => handleEnded);
-  }, [audio])
+    return () => audio?.removeEventListener("ended", () => dispatch(setNext()));
+  }, [audio, dispatch])
 
   if (!currentTrack) {
     return null;
