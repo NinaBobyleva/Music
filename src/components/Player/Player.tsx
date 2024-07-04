@@ -16,15 +16,9 @@ export function Player({
   handlePlay,
   handleLoop,
 }: PlayerProps) {
-  const {isShuffle} = useAppSelector(
-    (state) => state.tracks
-  );
-  
-  const dispatch = useAppDispatch();
+  const { isShuffle } = useAppSelector((state) => state.tracks);
 
-  const svg = () => {
-    alert("Еще не реализовано");
-  };
+  const dispatch = useAppDispatch();
 
   const handlePrevTrack = () => {
     dispatch(setPrev());
@@ -36,8 +30,10 @@ export function Player({
 
   const handleShuffleTracks = () => {
     dispatch(setShuffle(!isShuffle));
-  }
-
+    // if (!isShuffle) {
+    //   dispatch(setNext());
+    // }
+  };
 
   return (
     <div className={styles.playerControls}>
@@ -83,7 +79,13 @@ export function Player({
         onClick={handleShuffleTracks}
         className={classNames(styles.playerBtnShuffle, styles.btnIcon)}
       >
-        <svg className={styles.playerBtnShuffleSvg}>
+        <svg
+          className={
+            isShuffle
+              ? styles.playerBtnShuffleSvgActive
+              : styles.playerBtnShuffleSvg
+          }
+        >
           <use xlinkHref="img/icon/sprite.svg#icon-shuffle" />
         </svg>
       </div>

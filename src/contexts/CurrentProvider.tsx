@@ -1,19 +1,13 @@
 "use client";
-import { TrackType } from "@/types/tracks";
 import {
-  Dispatch,
   MutableRefObject,
   ReactNode,
-  SetStateAction,
   createContext,
   useContext,
   useRef,
-  useState,
 } from "react";
 
 type CurrentTrackContextValue = {
-  isPlaying: boolean;
-  setIsPlaying: Dispatch<SetStateAction<boolean>>;
   audioRef: MutableRefObject<HTMLAudioElement | null>;
 };
 const CurrentTrackContext = createContext<CurrentTrackContextValue | undefined>(
@@ -25,14 +19,11 @@ type CurrentTrackProviderProps = {
 };
 
 export function CurrentTrackProvider({ children }: CurrentTrackProviderProps) {
-  const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   return (
     <CurrentTrackContext.Provider
       value={{
-        isPlaying,
-        setIsPlaying,
         audioRef,
       }}
     >
