@@ -3,22 +3,31 @@ import { TrackType } from "@/types/tracks";
 import styles from "./track.module.css";
 import { useCurrentTrack } from "@/contexts/CurrentTrackProvider";
 import { timeFormat } from "../../utils/helpers";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import classNames from "classnames";
+import { useAppDispatch, useAppSelector } from "@/store/store";
+import { setCurrentTrack } from "@/store/features/currentTrackSlice";
 
 type TrackProps = {
   track: TrackType;
 };
 
 export function Track({ track }: TrackProps) {
-  const { currentTrack, setCurrentTrack, isPlaying, setIsPlaying, audioRef } = useCurrentTrack();
+  const { isPlaying, setIsPlaying, audioRef } = useCurrentTrack();
+  // const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  // const audioRef = useRef<HTMLAudioElement | null>(null);
   const { name, author, album, duration_in_seconds } = track;
+  const currentTrack = useAppSelector((state) => state.current.currentTrackState);
+  // const isPlaying = useAppSelector((state) => state.play.playState);
+  const dispatch = useAppDispatch();
+
+  // useEffect(() => {
+  //   dispatch(setCurrentTrack(track));
+  // }, [dispatch])
 
   const handleTrackClick = () => {
-    setCurrentTrack(track);
+    dispatch(setCurrentTrack(track));
   }
-
-  console.log(track.id);
 
   useEffect(() => {
     audioRef.current?.play();

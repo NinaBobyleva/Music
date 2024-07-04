@@ -1,11 +1,15 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
 import { authReducers } from "./features/authSlice";
 import { TypedUseSelectorHook, useDispatch, useSelector, useStore } from "react-redux";
+import { currentReducers } from "./features/currentTrackSlice";
+import { playReducers } from "./features/playSlice";
 
 export const makeStore = () => {
     return configureStore({
         reducer: combineReducers({
             auth: authReducers,
+            current: currentReducers,
+            play: playReducers,
         }),
     });
 };

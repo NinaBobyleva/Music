@@ -1,5 +1,7 @@
+import { useAppDispatch, useAppSelector } from "@/store/store";
 import styles from "./player.module.css";
 import classNames from "classnames";
+import { setCurrentTrack } from "@/store/features/currentTrackSlice";
 
 type PlayerProps = {
   isPlaying: boolean,
@@ -9,10 +11,16 @@ type PlayerProps = {
 }
 
 export function Player({isPlaying, isLoop, handlePlay, handleLoop}: PlayerProps) {
-
+  const currentTrack = useAppSelector((state) => state.current.currentTrackState);
+  const dispatch = useAppDispatch();
+  console.log(currentTrack?.id);
   const svg = () => {
     alert("Еще не реализовано")
   }
+
+  // const handleNextTrack = () => {
+
+  // }
 
   return (
     <div className={styles.playerControls}>
@@ -28,7 +36,7 @@ export function Player({isPlaying, isLoop, handlePlay, handleLoop}: PlayerProps)
           <use xlinkHref="img/icon/sprite.svg#icon-play" />
         </svg>)}
       </div>
-      <div onClick={svg} className={styles.playerBtnNext}>
+      <div onClick={() => dispatch(setCurrentTrack(currentTrack))} className={styles.playerBtnNext}>
         <svg className={styles.playerBtnNextSvg}>
           <use xlinkHref="img/icon/sprite.svg#icon-next" />
         </svg>
