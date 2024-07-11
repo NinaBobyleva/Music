@@ -4,7 +4,7 @@ import { Sidebar } from "@/components/Sidebar/Sidebar";
 import { Bar } from "@/components/Bar/Bar";
 import { Search } from "@/components/Search/Search";
 import { Navigation } from "@/components/Navigation/Navigation";
-import { CurrentTrackProvider } from "@/contexts/CurrentTrackProvider";
+import { CurrentTrackProvider } from "@/contexts/CurrentProvider";
 
 export default async function Home() {
   return (
