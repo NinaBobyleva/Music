@@ -1,17 +1,24 @@
+"use client";
 import Image from "next/image";
-import styles from "./sidebar.module.css"
+import styles from "./sidebar.module.css";
+import { useSelector } from "react-redux";
 
 export function Sidebar() {
+  const { user, logout } = useSelector((state) => state.user);
   return (
     <div className={styles.mainSidebar}>
-      <div className={styles.sidebarPersonal}>
-        <p className={styles.sidebarPersonalName}>Sergey.Ivanov</p>
-        <div className={styles.sidebarIcon}>
-          <svg>
-            <use xlinkHref="img/icon/sprite.svg#logout" />
-          </svg>
+      {user ? (
+        <div className={styles.sidebarPersonal}>
+          <p className={styles.sidebarPersonalName}>{user.username}</p>
+          <div onClick={logout} className={styles.sidebarIcon}>
+            <svg>
+              <use xlinkHref="img/icon/sprite.svg#logout" />
+            </svg>
+          </div>
         </div>
-      </div>
+      ) : (
+        ""
+      )}
       <div className={styles.sidebarBlock}>
         <div className={styles.sidebarList}>
           <div className={styles.sidebarItem}>

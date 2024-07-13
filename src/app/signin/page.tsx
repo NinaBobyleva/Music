@@ -1,8 +1,37 @@
+"use client";
 import styles from "./page.module.css";
 import Image from "next/image";
 import classNames from "classnames";
+import Link from "next/link";
+import { useAppDispatch } from "@/store/store";
+import { getUser } from "@/api/user";
+import { useState } from "react";
 
-export default async function Signin() {
+export default function Signin() {
+  const [inputValue, setInputValue] = useState({
+    email: "",
+    password: "",
+  });
+
+  const onChangedInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, name } = e.target;
+    setInputValue({ ...inputValue, [name]: value });
+  };
+  const dispatch = useAppDispatch();
+  let error = "";
+
+  const {email, password} = inputValue;
+
+  const handleSignin = async () => {
+    try {
+      await dispatch(getUser({ email, password })).unwrap();
+      console.log("Успешно!");
+    } catch (err: unknown) {
+      error = err instanceof Error ? "Ошибка при загрузке треков " + err.message : "Неизвестная ошибка" ;
+      // console.error("Ошибка:", error.message);
+    }
+  };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.containerEnter}>
@@ -19,22 +48,26 @@ export default async function Signin() {
               </div>
             </a>
             <input
+              onChange={onChangedInput}
               className={classNames(styles.modalInput, styles.login)}
-              name="login"
+              value={inputValue.email}
+              name="email"
               placeholder="Почта"
               type="text"
             />
             <input
+              onChange={onChangedInput}
               className={styles.modalInput}
+              value={inputValue.password}
               name="password"
               placeholder="Пароль"
               type="password"
             />
-            <button className={styles.modalBtnEnter}>
-              <a href="../index.html">Войти</a>
+            <button onClick={handleSignin} className={styles.modalBtnEnter}>
+              <Link href="/">Войти</Link>
             </button>
             <button className={styles.modalBtnSignup}>
-              <a href="signup.html">Зарегистрироваться</a>
+              <Link href="/signup">Зарегистрироваться</Link>
             </button>
           </form>
         </div>

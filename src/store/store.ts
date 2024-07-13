@@ -1,5 +1,5 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { authReducers } from "./features/authSlice";
+import { userReducer } from "./features/userSlice";
 import {
   TypedUseSelectorHook,
   useDispatch,
@@ -11,7 +11,7 @@ import { tracksReducers } from "./features/tracksSlice";
 export const makeStore = () => {
   return configureStore({
     reducer: combineReducers({
-      auth: authReducers,
+      user: userReducer,
       tracks: tracksReducers,
     }),
   });
