@@ -8,7 +8,7 @@ import { getUser } from "@/api/user";
 import { useState } from "react";
 import { getToken } from "@/api/token";
 import { useSelector } from "react-redux";
-import { setRefresh } from "@/store/features/userSlice";
+import { setAccess, setRefresh } from "@/store/features/userSlice";
 
 export default function Signin() {
   const { error } = useSelector((state) => state.user);
@@ -31,7 +31,8 @@ export default function Signin() {
     try {
       await dispatch(getUser({ email, password })).unwrap();
       getToken({ email, password }).then((tokens) => {
-        const { refresh } = tokens;
+        const { access, refresh } = tokens;
+        dispatch(setAccess(access));
         dispatch(setRefresh(refresh));
       });
       console.log("Успешно!");
