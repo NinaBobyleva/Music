@@ -1,14 +1,14 @@
-'use client'
-// import { useAppDispatch } from "@/store/store";
+"use client";
 import styles from "./page.module.css";
 import Image from "next/image";
-import { signup } from "@/api/user";
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { getToken } from "@/api/token";
+import { signUp } from "@/api/user";
 
 export default function Signup() {
-  const {user} = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState({
     email: "",
     password: "",
@@ -18,17 +18,18 @@ export default function Signup() {
     const { value, name } = e.target;
     setInputValue({ ...inputValue, [name]: value });
   };
-  // const dispatch = useAppDispatch();
+
   let error = "";
 
-  const {email, password} = inputValue;
+  const { email, password } = inputValue;
 
   const handleSignUp = async () => {
     try {
-      await signup({ email, password });
+      await dispatch(signUp({ email, password }));
+      getToken({ email, password });
       console.log("Успешно!");
     } catch (err: unknown) {
-      error = err instanceof Error ? "Ошибка при загрузке треков " + err.message : "Неизвестная ошибка" ;
+      error = err instanceof Error ? err.message : "Неизвестная ошибка";
       // console.error("Ошибка:", error.message);
     }
   };
@@ -74,6 +75,7 @@ export default function Signup() {
             <button onClick={handleSignUp} className={styles.modalBtnSignupEnt}>
               <Link href="/">Зарегистрироваться</Link>
             </button>
+            {error && error}
           </form>
         </div>
       </div>

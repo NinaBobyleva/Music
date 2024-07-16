@@ -200,3 +200,8 @@
   .login {
     margin-bottom: 30px;
   }
+
+  .error {
+    color: #000000;
+    margin-top: 20px;
+  }

@@ -6,8 +6,13 @@ import Link from "next/link";
 import { useAppDispatch } from "@/store/store";
 import { getUser } from "@/api/user";
 import { useState } from "react";
+import { getToken } from "@/api/token";
+import { useSelector } from "react-redux";
+import { setRefresh } from "@/store/features/userSlice";
 
 export default function Signin() {
+  const { error } = useSelector((state) => state.user);
+  const dispatch = useAppDispatch();
   const [inputValue, setInputValue] = useState({
     email: "",
     password: "",
@@ -17,18 +22,22 @@ export default function Signin() {
     const { value, name } = e.target;
     setInputValue({ ...inputValue, [name]: value });
   };
-  const dispatch = useAppDispatch();
-  let error = "";
 
-  const {email, password} = inputValue;
+  const { email, password } = inputValue;
+
+  let err = "";
 
   const handleSignin = async () => {
     try {
       await dispatch(getUser({ email, password })).unwrap();
+      getToken({ email, password }).then((tokens) => {
+        const { refresh } = tokens;
+        dispatch(setRefresh(refresh));
+      });
       console.log("Успешно!");
-    } catch (err: unknown) {
-      error = err instanceof Error ? "Ошибка при загрузке треков " + err.message : "Неизвестная ошибка" ;
-      // console.error("Ошибка:", error.message);
+    } catch (error: unknown) {
+      err = error instanceof Error ? error.message : "Неизвестная ошибка";
+      console.log(err);
     }
   };
 
@@ -64,7 +73,11 @@ export default function Signin() {
               type="password"
             />
             <button onClick={handleSignin} className={styles.modalBtnEnter}>
-              <Link href="/">Войти</Link>
+              {error ? (
+                <Link href="/signin">Войти</Link>
+              ) : (
+                <Link href="/">Войти</Link>
+              )}
             </button>
             <button className={styles.modalBtnSignup}>
               <Link href="/signup">Зарегистрироваться</Link>

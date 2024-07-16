@@ -1,10 +1,16 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./menu.module.css";
 import Link from "next/link";
+import { logout } from "@/store/features/userSlice";
 
 export function Menu() {
-  const { user, logout } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user);
   console.log(user);
+  
+  const handleLogout = () => {
+    dispatch(logout());
+  };
   return (
     <div className={styles.navMenu}>
       <ul className={styles.menuList}>
@@ -20,9 +26,9 @@ export function Menu() {
         </li>
         <li className={styles.menuItem}>
           {user ? (
-            <Link onClick={logout} className={styles.menuLink} href="/signin">
+            <a onClick={handleLogout} className={styles.menuLink}>
               Выйти
-            </Link>
+            </a>
           ) : (
             <Link className={styles.menuLink} href="/signin">
               Войти

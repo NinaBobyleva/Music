@@ -7,6 +7,7 @@ import { Navigation } from "@/components/Navigation/Navigation";
 import { CurrentTrackProvider } from "@/contexts/CurrentProvider";
 
 export default async function Home() {
+  
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
