@@ -1,12 +1,11 @@
-import { useDispatch, useSelector } from "react-redux";
 import styles from "./menu.module.css";
 import Link from "next/link";
 import { logout } from "@/store/features/userSlice";
+import { useAppDispatch, useAppSelector } from "@/store/store";
 
 export function Menu() {
-  const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.user);
-  console.log(user);
+  const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state) => state.user);
   
   const handleLogout = () => {
     dispatch(logout());

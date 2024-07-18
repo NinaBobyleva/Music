@@ -3,12 +3,14 @@ import styles from "./page.module.css";
 import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
-import { useDispatch } from "react-redux";
-import { getToken } from "@/api/token";
-import { signUp } from "@/api/user";
+import { getTokens, signUp } from "@/store/features/userSlice";
+import { useAppDispatch } from "@/store/store";
+import { useRouter } from "next/navigation";
 
 export default function Signup() {
-  const dispatch = useDispatch();
+  const router = useRouter();
+  const [error, setError] = useState("");
+  const dispatch = useAppDispatch();
   const [inputValue, setInputValue] = useState({
     email: "",
     password: "",
@@ -19,18 +21,21 @@ export default function Signup() {
     setInputValue({ ...inputValue, [name]: value });
   };
 
-  let error = "";
-
-  const { email, password } = inputValue;
-
-  const handleSignUp = async () => {
+  const handleSignUp = async (e: React.MouseEvent) => {
+    e.preventDefault();
     try {
-      await dispatch(signUp({ email, password }));
-      getToken({ email, password });
+      await Promise.all([
+        dispatch(signUp(inputValue)).unwrap(),
+        dispatch(getTokens(inputValue)).unwrap(),
+      ]);
+      router.push('/signin');
       console.log("Успешно!");
-    } catch (err: unknown) {
-      error = err instanceof Error ? err.message : "Неизвестная ошибка";
-      // console.error("Ошибка:", error.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError("Неизвестная ошибка");
+      }
     }
   };
   return (
@@ -72,10 +77,10 @@ export default function Signup() {
               placeholder="Повторите пароль"
               type="password"
             />
+            <p className={styles.error}>{error && error}</p>
             <button onClick={handleSignUp} className={styles.modalBtnSignupEnt}>
-              <Link href="/">Зарегистрироваться</Link>
+              <span>Зарегистрироваться</span>
             </button>
-            {error && error}
           </form>
         </div>
       </div>

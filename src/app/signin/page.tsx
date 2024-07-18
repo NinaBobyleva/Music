@@ -4,14 +4,13 @@ import Image from "next/image";
 import classNames from "classnames";
 import Link from "next/link";
 import { useAppDispatch } from "@/store/store";
-import { getUser } from "@/api/user";
 import { useState } from "react";
-import { getToken } from "@/api/token";
-import { useSelector } from "react-redux";
-import { setAccess, setRefresh } from "@/store/features/userSlice";
+import { getTokens, getUser } from "@/store/features/userSlice";
+import { useRouter } from "next/navigation";
 
 export default function Signin() {
-  const { error } = useSelector((state) => state.user);
+  const router = useRouter();
+  const [error, setError] = useState("");
   const dispatch = useAppDispatch();
   const [inputValue, setInputValue] = useState({
     email: "",
@@ -23,22 +22,22 @@ export default function Signin() {
     setInputValue({ ...inputValue, [name]: value });
   };
 
-  const { email, password } = inputValue;
-
-  let err = "";
-
-  const handleSignin = async () => {
+  const handleSignin = async (e: React.MouseEvent) => {
+    e.preventDefault();
     try {
-      await dispatch(getUser({ email, password })).unwrap();
-      getToken({ email, password }).then((tokens) => {
-        const { access, refresh } = tokens;
-        dispatch(setAccess(access));
-        dispatch(setRefresh(refresh));
-      });
+      await Promise.all([
+        dispatch(getTokens(inputValue)).unwrap(),
+        dispatch(getUser(inputValue)).unwrap(),
+      ]);
+      router.push('/');
       console.log("Успешно!");
     } catch (error: unknown) {
-      err = error instanceof Error ? error.message : "Неизвестная ошибка";
-      console.log(err);
+      // console.log(error.message);
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError("Неизвестная ошибка");
+      }
     }
   };
 
@@ -73,16 +72,13 @@ export default function Signin() {
               placeholder="Пароль"
               type="password"
             />
-            <button onClick={handleSignin} className={styles.modalBtnEnter}>
-              {error ? (
-                <Link href="/signin">Войти</Link>
-              ) : (
-                <Link href="/">Войти</Link>
-              )}
+            <p className={styles.error}>{error && error}</p>
+            <button onClick={handleSignin} className={classNames(styles.modalBtnEnter, styles.modalBtnEnterText)}>
+              <span>Войти</span>
             </button>
-            <button className={styles.modalBtnSignup}>
-              <Link href="/signup">Зарегистрироваться</Link>
-            </button>
+            <Link className={styles.modalBtnSignup} href="/signup">
+              Зарегистрироваться
+            </Link>
           </form>
         </div>
       </div>

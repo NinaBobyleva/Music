@@ -1,9 +1,6 @@
-"use client";
-import { useSelector } from "react-redux";
 import styles from "./search.module.css";
 
 export function Search() {
-  const { error } = useSelector((state) => state.user);
   return (
     <div className={styles.wrapper}>
       <div className={styles.centerblockSearch}>
@@ -17,7 +14,6 @@ export function Search() {
           type="search"
         />
       </div>
-      <p className={styles.error}>{error && error}</p>
     </div>
   );
 }

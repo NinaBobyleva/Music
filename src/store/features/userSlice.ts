@@ -1,21 +1,43 @@
-import { getUser, signUp } from "@/api/user";
+import { fetchToken } from "@/api/token";
+import { fetchUser, fetchUserSignUp } from "@/api/user";
+import { Tokens } from "@/types/tokens";
 import { UserType } from "@/types/user";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+export const getUser = createAsyncThunk(
+  "user/getUser",
+  async ({ email, password }: { email: string; password: string }) => {
+    const getUsers = fetchUser({ email, password });
+    return getUsers;
+  }
+);
+
+export const signUp = createAsyncThunk(
+  "user/signUp",
+  async ({ email, password }: { email: string; password: string }) => {
+    const userSignUp = fetchUserSignUp({ email, password });
+    return userSignUp;
+  }
+);
+
+export const getTokens = createAsyncThunk(
+  "token/getToken",
+  async ({ email, password }: { email: string; password: string }) => {
+    const tokens = fetchToken({ email, password });
+    return tokens;
+  }
+);
 
 type AuthStateType = {
-  user: UserType[] | null;
+  user: UserType | null;
   authState: boolean;
-  error: unknown;
-  access: string | null;
-  refresh: string | null;
+  tokens: Tokens | null;
 };
 
 const initialState: AuthStateType = {
   user: null,
   authState: false,
-  error: null,
-  access: null,
-  refresh: null,
+  tokens: null,
 };
 
 const userSlice = createSlice({
@@ -24,37 +46,38 @@ const userSlice = createSlice({
   reducers: {
     logout: (state) => {
       state.user = null;
+      state.authState = false;
     },
-    setAccess: (state, action) => {
-      state.access = action.payload;
-    },
-    setRefresh: (state, action) => {
-      state.refresh = action.payload;
+    setTokens: (state, action) => {
+      state.tokens = action.payload;
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(
         getUser.fulfilled,
-        (state, action: PayloadAction<UserType[]>) => {
-          state.error = null;
+        (state, action: PayloadAction<UserType>) => {
           state.user = action.payload;
         }
       )
-      .addCase(signUp.fulfilled, (state, action: PayloadAction<UserType[]>) => {
-        state.error = null;
+      .addCase(
+        getTokens.fulfilled,
+        (state, action: PayloadAction<Tokens>) => {
+          state.authState = true;
+          state.tokens = action.payload;
+        }
+      )
+      .addCase(signUp.fulfilled, (state, action: PayloadAction<UserType>) => {
         state.user = action.payload;
       })
       .addCase(getUser.rejected, (state, action) => {
-        state.error = action.error.message;
         console.error("Error:", action.error.message);
       })
       .addCase(signUp.rejected, (state, action) => {
-        state.error = action.payload;
         console.error("Error:", action.error.message);
       });
   },
 });
 
-export const { logout, setAccess, setRefresh } = userSlice.actions;
+export const { logout } = userSlice.actions;
 export const userReducer = userSlice.reducer;

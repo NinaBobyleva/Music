@@ -1,12 +1,14 @@
 "use client";
 import Image from "next/image";
 import styles from "./sidebar.module.css";
-import { useDispatch, useSelector } from "react-redux";
 import { logout } from "@/store/features/userSlice";
+import { useAppDispatch, useAppSelector } from "@/store/store";
+import useInitializeLikedTracks from "@/hooks/useInitializeLikedTracks";
 
 export function Sidebar() {
-  const { user } = useSelector((state) => state.user);
-  const dispatch = useDispatch();
+  const { user } = useAppSelector((state) => state.user);
+  useInitializeLikedTracks();
+  const dispatch = useAppDispatch();
   const handleLogout = () => {
     dispatch(logout());
   };

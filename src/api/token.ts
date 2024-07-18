@@ -1,11 +1,6 @@
 const USER_URL = "https://skypro-music-api.skyeng.tech/user/";
 
-type TokenProp = {
-  email: string;
-  password: string;
-};
-
-export async function getToken({ email, password }: TokenProp) {
+export async function fetchToken({ email, password }: {email:string, password: string}) {
   const tokens = await fetch(`${USER_URL}token/`, {
     method: "POST",
     body: JSON.stringify({
@@ -19,7 +14,7 @@ export async function getToken({ email, password }: TokenProp) {
   if (!tokens.ok) {
     throw new Error(tokens.statusText);
   }
-  console.log(tokens);
+  
   return tokens.json();
 }
 

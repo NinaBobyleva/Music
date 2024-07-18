@@ -1,12 +1,16 @@
+import useLikeTrack from "@/hooks/useLikeTrack";
 import styles from "./trackPlay.module.css";
 import classNames from "classnames";
+import { TrackType } from "@/types/tracks";
 
 type TrackPlayProps = {
   name: string,
-  author: string
+  author: string,
+  currentTrack: TrackType,
 }
 
-export function TrackPlay({name, author}: TrackPlayProps) {
+export function TrackPlay({name, author, currentTrack}: TrackPlayProps) {
+  const {isLiked, handleLike} = useLikeTrack(currentTrack);
   return (
     <div className={styles.playerTrackPlay}>
       <div className={styles.trackPlayContain}>
@@ -27,14 +31,9 @@ export function TrackPlay({name, author}: TrackPlayProps) {
         </div>
       </div>
       <div className={styles.trackPlayLikeDis}>
-        <div className={classNames(styles.trackPlayLike, styles.btnIcon)}>
+        <div onClick={handleLike} className={classNames(styles.trackPlayLike, styles.btnIcon)}>
           <svg className={styles.trackPlayLikeSvg}>
-            <use xlinkHref="img/icon/sprite.svg#icon-like" />
-          </svg>
-        </div>
-        <div className={classNames(styles.trackPlayDislike, styles.btnIcon)}>
-          <svg className={styles.trackPlayDislikeSvg}>
-            <use xlinkHref="img/icon/sprite.svg#icon-dislike" />
+            <use xlinkHref={isLiked ? "img/icon/sprite.svg#icon-active-like" : "img/icon/sprite.svg#icon-like"} />
           </svg>
         </div>
       </div>

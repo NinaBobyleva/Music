@@ -93,7 +93,7 @@ export function Bar() {
               handleLoop={handleLoop}
               isLoop={isLoop}
             />
-            <TrackPlay name={name} author={author} />
+            <TrackPlay currentTrack={currentTrack} name={name} author={author} />
           </div>
           <div className={styles.wrapper}>
             <Volume audio={audioRef.current} />
