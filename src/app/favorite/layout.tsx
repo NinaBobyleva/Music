@@ -5,7 +5,7 @@ import { Search } from "@/components/Search/Search";
 import { Sidebar } from "@/components/Sidebar/Sidebar";
 import { Bar } from "@/components/Bar/Bar";
 
-export default function PagesLayout({
+export default function FavoriteLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

@@ -2,7 +2,6 @@
 import styles from "./page.module.css";
 import Image from "next/image";
 import { useState } from "react";
-import Link from "next/link";
 import { getTokens, signUp } from "@/store/features/userSlice";
 import { useAppDispatch } from "@/store/store";
 import { useRouter } from "next/navigation";
