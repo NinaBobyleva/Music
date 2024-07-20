@@ -15,6 +15,7 @@ export function Bar() {
   const {currentTrack, isPlaying} = useAppSelector(
     (state) => state.tracks
   );
+  console.log(isPlaying);
   const dispatch = useAppDispatch();
   
   const [currentTime, setCurrentTime] = useState<number>(0);

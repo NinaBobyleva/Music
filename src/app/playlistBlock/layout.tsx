@@ -1,5 +1,9 @@
+import { Navigation } from "@/components/Navigation/Navigation";
 import styles from "./layout.module.css";
 import { CurrentTrackProvider } from "@/contexts/CurrentProvider";
+import { Search } from "@/components/Search/Search";
+import { Sidebar } from "@/components/Sidebar/Sidebar";
+import { Bar } from "@/components/Bar/Bar";
 
 export default function PlaylistBlockLayout({
   children,
@@ -10,7 +14,15 @@ export default function PlaylistBlockLayout({
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <CurrentTrackProvider>
-        {children}
+          <main className={styles.main}>
+            <Navigation />
+            <div className={styles.mainCenterblock}>
+              <Search />
+              {children}
+            </div>
+            <Sidebar />
+          </main>
+          <Bar />
         </CurrentTrackProvider>
         <footer />
       </div>

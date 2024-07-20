@@ -8,15 +8,7 @@ import { Bar } from "@/components/Bar/Bar";
 export default function FavoritePage() {
   return (
     <>
-      <main className={styles.main}>
-        <Navigation />
-        <div className={styles.mainCenterblock}>
-          <Search />
-          <FavoriteTracks />
-        </div>
-        <Sidebar />
-      </main>
-      <Bar />
+      <FavoriteTracks />
     </>
   );
 }
