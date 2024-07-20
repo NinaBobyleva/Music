@@ -1,13 +1,15 @@
+import { Navigation } from "@/components/Navigation/Navigation";
 import styles from "./page.module.css";
-import { Tracks } from "@/components/Tracks/Tracks";
+import { CurrentTrackProvider } from "@/contexts/CurrentProvider";
+import { Search } from "@/components/Search/Search";
 import { Sidebar } from "@/components/Sidebar/Sidebar";
 import { Bar } from "@/components/Bar/Bar";
-import { Search } from "@/components/Search/Search";
-import { Navigation } from "@/components/Navigation/Navigation";
-import { CurrentTrackProvider } from "@/contexts/CurrentProvider";
 
-export default async function Home() {
-  
+export default function PlaylistBlockLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
@@ -16,7 +18,7 @@ export default async function Home() {
             <Navigation />
             <div className={styles.mainCenterblock}>
               <Search />
-              <Tracks />
+              {children}
             </div>
             <Sidebar />
           </main>

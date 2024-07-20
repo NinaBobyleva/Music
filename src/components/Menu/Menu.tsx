@@ -14,12 +14,12 @@ export function Menu() {
     <div className={styles.navMenu}>
       <ul className={styles.menuList}>
         <li className={styles.menuItem}>
-          <Link className={styles.menuLink} href="/">
+          <Link className={styles.menuLink} href="/pages">
             Главное
           </Link>
         </li>
         <li className={styles.menuItem}>
-          <Link className={styles.menuLink} href="/playlistBlock/favorite">
+          <Link className={styles.menuLink} href="/pages/favorite">
             Мой плейлист
           </Link>
         </li>

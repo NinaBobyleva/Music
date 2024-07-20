@@ -29,7 +29,7 @@ export default function Signin() {
         dispatch(getTokens(inputValue)).unwrap(),
         dispatch(getUser(inputValue)).unwrap(),
       ]);
-      router.push('/');
+      router.push('/pages');
       console.log("Успешно!");
     } catch (error: unknown) {
       // console.log(error.message);
