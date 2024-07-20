@@ -1,11 +1,11 @@
 import { Navigation } from "@/components/Navigation/Navigation";
-import styles from "./page.module.css";
+import styles from "../page.module.css";
 import { CurrentTrackProvider } from "@/contexts/CurrentProvider";
 import { Search } from "@/components/Search/Search";
 import { Sidebar } from "@/components/Sidebar/Sidebar";
 import { Bar } from "@/components/Bar/Bar";
 
-export default function PlaylistBlockLayout({
+export default function PagesLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

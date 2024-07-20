@@ -6,7 +6,7 @@ import { useAppSelector } from "@/store/store";
 
 export function FavoriteTracks() {
   const {likedPlaylist} = useAppSelector((state) => state.tracks);
-  console.log(likedPlaylist);
+  
   return (
     <>
       <h2 className={styles.centerblockH2}>Мои треки</h2>
