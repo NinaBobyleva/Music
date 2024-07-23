@@ -4,7 +4,7 @@ import { Player } from "../Player/Player";
 import { TrackPlay } from "../TrackPlay/TrackPlay";
 import { Volume } from "../Volume/Volume";
 import styles from "./bar.module.css";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import ProgressBar from "./ProgressBar/ProgressBar";
 import { CurrentTimeBlock } from "./CurrentTimeBlock/CurrentTimeBlock";
 import { useAppDispatch, useAppSelector } from "@/store/store";
@@ -15,7 +15,6 @@ export function Bar() {
   const {currentTrack, isPlaying} = useAppSelector(
     (state) => state.tracks
   );
-  console.log(isPlaying);
   const dispatch = useAppDispatch();
   
   const [currentTime, setCurrentTime] = useState<number>(0);
@@ -48,13 +47,13 @@ export function Bar() {
     dispatch(setIsPlaying(!isPlaying));
   };
 
-  const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSeek = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     if (audioRef.current) {
       if (isPlaying) {
         audioRef.current.currentTime = Number(e.target.value);
       }
     }
-  };
+  }, [audioRef, isPlaying]);
 
   const handleLoop = () => {
     const audio = audioRef.current;
