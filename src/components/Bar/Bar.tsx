@@ -28,14 +28,9 @@ export function Bar() {
     return () => audio?.removeEventListener("ended", () => dispatch(setNext()));
   }, [audio, dispatch])
 
-  if (!currentTrack) {
-    return null;
-  }
-  const { name, author, track_file } = currentTrack;
-
   const duration = audioRef.current?.duration || 0;
 
-  const handlePlay = () => {
+  const handlePlay = useCallback(() => {
     const audio = audioRef.current;
     if (audio) {
       if (isPlaying) {
@@ -45,7 +40,7 @@ export function Bar() {
       }
     }
     dispatch(setIsPlaying(!isPlaying));
-  };
+  }, [audioRef, isPlaying, dispatch]);
 
   const handleSeek = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     if (audioRef.current) {
@@ -55,7 +50,7 @@ export function Bar() {
     }
   }, [audioRef, isPlaying]);
 
-  const handleLoop = () => {
+  const handleLoop = useCallback(() => {
     const audio = audioRef.current;
     if (audio) {
       if (isLoop) {
@@ -65,7 +60,13 @@ export function Bar() {
       }
     }
     setIsLoop((prev) => !prev);
-  };
+  }, [audioRef, isLoop, setIsLoop]);
+
+  if (!currentTrack) {
+    return null;
+  }
+
+  const { name, author, track_file } = currentTrack;
 
   return (
     <div className={styles.bar}>

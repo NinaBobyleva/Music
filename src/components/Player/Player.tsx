@@ -2,6 +2,7 @@ import { useAppDispatch, useAppSelector } from "@/store/store";
 import styles from "./player.module.css";
 import classNames from "classnames";
 import { setNext, setPrev, setShuffle } from "@/store/features/tracksSlice";
+import React from "react";
 
 type PlayerProps = {
   isPlaying: boolean;
@@ -10,12 +11,12 @@ type PlayerProps = {
   handleLoop: () => void;
 };
 
-export function Player({
+export const Player = React.memo(({
   isPlaying,
   isLoop,
   handlePlay,
   handleLoop,
-}: PlayerProps) {
+}: PlayerProps) => {
   const { isShuffle } = useAppSelector((state) => state.tracks);
 
   const dispatch = useAppDispatch();
@@ -88,4 +89,6 @@ export function Player({
       </div>
     </div>
   );
-}
+});
+
+Player.displayName = 'Player';
