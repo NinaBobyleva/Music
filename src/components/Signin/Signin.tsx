@@ -1,5 +1,5 @@
 "use client";
-import styles from "./page.module.css";
+import styles from "./signin.module.css";
 import Image from "next/image";
 import classNames from "classnames";
 import Link from "next/link";
@@ -8,7 +8,7 @@ import { useState } from "react";
 import { getTokens, getUser } from "@/store/features/userSlice";
 import { useRouter } from "next/navigation";
 
-export default function Signin() {
+export function Signin() {
   const router = useRouter();
   const [error, setError] = useState("");
   const dispatch = useAppDispatch();
@@ -29,7 +29,7 @@ export default function Signin() {
         dispatch(getTokens(inputValue)).unwrap(),
         dispatch(getUser(inputValue)).unwrap(),
       ]);
-      router.push('/');
+      router.push("/");
       console.log("Успешно!");
     } catch (error: unknown) {
       if (error instanceof Error) {
@@ -72,7 +72,13 @@ export default function Signin() {
               type="password"
             />
             <p className={styles.error}>{error && error}</p>
-            <button onClick={handleSignin} className={classNames(styles.modalBtnEnter, styles.modalBtnEnterText)}>
+            <button
+              onClick={handleSignin}
+              className={classNames(
+                styles.modalBtnEnter,
+                styles.modalBtnEnterText
+              )}
+            >
               <span>Войти</span>
             </button>
             <Link className={styles.modalBtnSignup} href="/signup">

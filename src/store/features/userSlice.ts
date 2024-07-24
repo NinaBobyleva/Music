@@ -1,5 +1,5 @@
 import { fetchToken } from "@/api/token";
-import { fetchUser, fetchUserSignUp } from "@/api/user";
+import { fetchUser, fetchUserSignup } from "@/api/user";
 import { Tokens } from "@/types/tokens";
 import { UserType } from "@/types/user";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
@@ -12,10 +12,10 @@ export const getUser = createAsyncThunk(
   }
 );
 
-export const signUp = createAsyncThunk(
-  "user/signUp",
+export const signup = createAsyncThunk(
+  "user/signup",
   async ({ email, password }: { email: string; password: string }) => {
-    const userSignUp = fetchUserSignUp({ email, password });
+    const userSignUp = fetchUserSignup({ email, password });
     return userSignUp;
   }
 );
@@ -54,26 +54,20 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(
-        getUser.fulfilled,
-        (state, action: PayloadAction<UserType>) => {
-          state.user = action.payload;
-        }
-      )
-      .addCase(
-        getTokens.fulfilled,
-        (state, action: PayloadAction<Tokens>) => {
-          state.authState = true;
-          state.tokens = action.payload;
-        }
-      )
-      .addCase(signUp.fulfilled, (state, action: PayloadAction<UserType>) => {
+      .addCase(getUser.fulfilled, (state, action: PayloadAction<UserType>) => {
+        state.user = action.payload;
+      })
+      .addCase(getTokens.fulfilled, (state, action: PayloadAction<Tokens>) => {
+        state.authState = true;
+        state.tokens = action.payload;
+      })
+      .addCase(signup.fulfilled, (state, action: PayloadAction<UserType>) => {
         state.user = action.payload;
       })
       .addCase(getUser.rejected, (state, action) => {
         console.error("Error:", action.error.message);
       })
-      .addCase(signUp.rejected, (state, action) => {
+      .addCase(signup.rejected, (state, action) => {
         console.error("Error:", action.error.message);
       });
   },

@@ -1,6 +1,12 @@
 const USER_URL = "https://skypro-music-api.skyeng.tech/user/";
 
-export async function fetchUser({ email, password }: {email: string, password: string}) {
+export async function fetchUser({
+  email,
+  password,
+}: {
+  email: string;
+  password: string;
+}) {
   const res = await fetch(`${USER_URL}login/`, {
     method: "POST",
     body: JSON.stringify({
@@ -18,9 +24,15 @@ export async function fetchUser({ email, password }: {email: string, password: s
   }
 
   return json;
-};
+}
 
-export async function fetchUserSignUp({ email, password }: {email: string, password: string}) {
+export async function fetchUserSignup({
+  email,
+  password,
+}: {
+  email: string;
+  password: string;
+}) {
   const res = await fetch(`${USER_URL}signup/`, {
     method: "POST",
     body: JSON.stringify({

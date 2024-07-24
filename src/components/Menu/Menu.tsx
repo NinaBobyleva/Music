@@ -40,7 +40,7 @@ export function Menu() {
               Выйти
             </a>
           ) : (
-            <Link className={styles.menuLink} href="/signin">
+            <Link className={styles.menuLink} href="/login">
               Войти
             </Link>
           )}
