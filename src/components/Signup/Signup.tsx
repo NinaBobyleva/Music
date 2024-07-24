@@ -13,6 +13,7 @@ export function Signup() {
   const [inputValue, setInputValue] = useState({
     email: "",
     password: "",
+    passwordTwo: "",
   });
 
   const onChangedInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,6 +24,9 @@ export function Signup() {
   const handleSignUp = async (e: React.MouseEvent) => {
     e.preventDefault();
     try {
+      if (inputValue.password !== inputValue.passwordTwo) {
+        return alert('Оба пароля должны совпадать');
+      }
       await dispatch(signup(inputValue)).unwrap();
       router.push("/login");
       console.log("Успешно!");
@@ -68,8 +72,8 @@ export function Signup() {
             <input
               onChange={onChangedInput}
               className={styles.modalInput}
-              value={inputValue.password}
-              name="password"
+              value={inputValue.passwordTwo}
+              name="passwordTwo"
               placeholder="Повторите пароль"
               type="password"
             />
