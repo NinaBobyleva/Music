@@ -30,7 +30,7 @@ export function Menu() {
           </Link>
         </li>
         <li onClick={handleFavorite} className={styles.menuItem}>
-          <a onClick={handleLogout} className={styles.menuLink}>
+          <a className={styles.menuLink}>
             Мой плейлист
           </a>
         </li>
