@@ -35,7 +35,7 @@ export function Playlist({ tracks }: PlaylistProps) {
       </div>
       <div className={styles.contentPlaylist}>
         {tracks.map((track) => (
-          <Track key={track.id} track={track} />
+          <Track key={track._id} track={track} />
         ))}
       </div>
     </div>

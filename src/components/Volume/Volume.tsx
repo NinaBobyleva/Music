@@ -13,7 +13,7 @@ export function Volume({audio}: VolumeProps) {
     if (audio) {
         audio.volume = volume;
     }
-}, [volume]);
+}, [volume, audio]);
 
   return (
     <div className={styles.barVolumeBlock}>

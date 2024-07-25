@@ -4,7 +4,7 @@ import { Player } from "../Player/Player";
 import { TrackPlay } from "../TrackPlay/TrackPlay";
 import { Volume } from "../Volume/Volume";
 import styles from "./bar.module.css";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import ProgressBar from "./ProgressBar/ProgressBar";
 import { CurrentTimeBlock } from "./CurrentTimeBlock/CurrentTimeBlock";
 import { useAppDispatch, useAppSelector } from "@/store/store";
@@ -28,14 +28,9 @@ export function Bar() {
     return () => audio?.removeEventListener("ended", () => dispatch(setNext()));
   }, [audio, dispatch])
 
-  if (!currentTrack) {
-    return null;
-  }
-  const { name, author, track_file } = currentTrack;
-
   const duration = audioRef.current?.duration || 0;
 
-  const handlePlay = () => {
+  const handlePlay = useCallback(() => {
     const audio = audioRef.current;
     if (audio) {
       if (isPlaying) {
@@ -45,17 +40,17 @@ export function Bar() {
       }
     }
     dispatch(setIsPlaying(!isPlaying));
-  };
+  }, [audioRef, isPlaying, dispatch]);
 
-  const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSeek = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     if (audioRef.current) {
       if (isPlaying) {
         audioRef.current.currentTime = Number(e.target.value);
       }
     }
-  };
+  }, [audioRef, isPlaying]);
 
-  const handleLoop = () => {
+  const handleLoop = useCallback(() => {
     const audio = audioRef.current;
     if (audio) {
       if (isLoop) {
@@ -65,7 +60,13 @@ export function Bar() {
       }
     }
     setIsLoop((prev) => !prev);
-  };
+  }, [audioRef, isLoop, setIsLoop]);
+
+  if (!currentTrack) {
+    return null;
+  }
+
+  const { name, author, track_file } = currentTrack;
 
   return (
     <div className={styles.bar}>
@@ -93,7 +94,7 @@ export function Bar() {
               handleLoop={handleLoop}
               isLoop={isLoop}
             />
-            <TrackPlay name={name} author={author} />
+            <TrackPlay currentTrack={currentTrack} name={name} author={author} />
           </div>
           <div className={styles.wrapper}>
             <Volume audio={audioRef.current} />

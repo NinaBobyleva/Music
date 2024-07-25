@@ -13,7 +13,9 @@ export async function Tracks() {
     tracks = await getTracks();
   } catch (err: unknown) {
     error = err instanceof Error ? "Ошибка при загрузке треков " + err.message : "Неизвестная ошибка" ;
+    console.log(err);
   }
+  console.log(tracks);
   return (
     <>
       {error && error}
