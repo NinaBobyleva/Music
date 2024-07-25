@@ -46,7 +46,7 @@ const tracksSlice = createSlice({
     },
     setPrev: (state) => {
       const currentIdx = state.currentPlaylist.findIndex(
-        (track) => track.id === state.currentTrack?.id
+        (track) => track._id === state.currentTrack?._id
       );
       if (!currentIdx) {
         return;
@@ -56,7 +56,7 @@ const tracksSlice = createSlice({
     },
     setNext: (state) => {
       const currentIdx = state.currentPlaylist.findIndex(
-        (track) => track.id === state.currentTrack?.id
+        (track) => track._id === state.currentTrack?._id
       );
       if (currentIdx >= state.currentPlaylist.length - 1) {
         return;
@@ -75,7 +75,7 @@ const tracksSlice = createSlice({
     },
     setDislikeTrack: (state, action: PayloadAction<TrackType>) => {
       console.log(action.payload);
-      const index = state.likedPlaylist.findIndex((track) => track.id === action.payload.id);
+      const index = state.likedPlaylist.findIndex((track) => track._id === action.payload._id);
       state.likedPlaylist.splice(index, 1);
     },
     setLikeTrack: (state, action: PayloadAction<TrackType>) => {

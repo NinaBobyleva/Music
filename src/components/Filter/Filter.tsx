@@ -3,7 +3,7 @@ import { TrackType } from "@/types/tracks";
 import styles from "./filter.module.css";
 import { getUniqueValues } from "@/utils/getUniqueValues";
 import { FilterItem } from "./FilterItem/FilterItem";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 
 const SORT_OPTIONS = ["По умолчанию", "Сначала новые", "Сначала старые"];
 

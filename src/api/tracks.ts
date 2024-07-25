@@ -1,14 +1,17 @@
 import { fetchWithAuth } from "@/utils/fetchWithAuth";
 
-const BASE_URL = "https://skypro-music-api.skyeng.tech/";
-const TRACK_URL = "https://skypro-music-api.skyeng.tech/catalog/track/";
+const TRACK_URL =
+  "https://webdev-music-003b5b991590.herokuapp.com/catalog/track/";
 
 export async function getTracks() {
-  const res = await fetch(`${TRACK_URL}all/`);
+  const res = await fetch(TRACK_URL + `all/`);
   if (!res.ok) {
     throw new Error(res.statusText);
   }
-  return res.json();
+  
+  const response = await res.json();
+
+  return response.data;
 }
 
 export async function likeTrack({
@@ -21,7 +24,7 @@ export async function likeTrack({
   refresh: string;
 }) {
   const res = await fetchWithAuth(
-    BASE_URL + `catalog/track/${trackId}/favorite/`,
+    TRACK_URL + `${trackId}/favorite/`,
     {
       method: "POST",
       headers: {
@@ -31,31 +34,35 @@ export async function likeTrack({
     refresh
   );
 
-  return res.json();
+  const response = await res.json();
+
+  return response.data;
 }
 
 export async function dislikeTrack({
-    trackId,
-    access,
-    refresh,
-  }: {
-    trackId: number;
-    access: string;
-    refresh: string;
-  }) {
-    const res = await fetchWithAuth(
-      BASE_URL + `catalog/track/${trackId}/favorite/`,
-      {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${access}`,
-        },
+  trackId,
+  access,
+  refresh,
+}: {
+  trackId: number;
+  access: string;
+  refresh: string;
+}) {
+  const res = await fetchWithAuth(
+    TRACK_URL + `${trackId}/favorite/`,
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${access}`,
       },
-      refresh
-    );
-  
-    return res.json();
-  }
+    },
+    refresh
+  );
+
+  const response = await res.json();
+
+  return response.data;
+}
 
 export async function fetchFavoriteTracks({
   access,
@@ -65,7 +72,7 @@ export async function fetchFavoriteTracks({
   refresh: string;
 }) {
   const res = await fetchWithAuth(
-    BASE_URL + `catalog/track/favorite/all/`,
+    TRACK_URL + `favorite/all/`,
     {
       method: "GET",
       headers: {
@@ -75,5 +82,7 @@ export async function fetchFavoriteTracks({
     refresh
   );
 
-  return res.json();
+  const response = await res.json();
+
+  return response.data;
 }

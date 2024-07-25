@@ -1,4 +1,4 @@
-const USER_URL = "https://skypro-music-api.skyeng.tech/user/";
+const USER_URL = "https://webdev-music-003b5b991590.herokuapp.com/user/";
 
 export async function fetchUser({
   email,

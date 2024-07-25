@@ -15,6 +15,7 @@ export async function Tracks() {
     error = err instanceof Error ? "Ошибка при загрузке треков " + err.message : "Неизвестная ошибка" ;
     console.log(err);
   }
+  console.log(tracks);
   return (
     <>
       {error && error}

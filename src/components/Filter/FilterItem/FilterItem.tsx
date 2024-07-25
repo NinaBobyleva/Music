@@ -18,7 +18,6 @@ export function FilterItem({
 }: FilterItemProps) {
   const [counter, setCounter] = useState<number>(0);
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  
   return (
     <div className={styles.filterWrapper}>
       <div

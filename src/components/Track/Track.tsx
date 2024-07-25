@@ -35,7 +35,7 @@ export function Track({ track }: TrackProps) {
       <div className={styles.playlistTrack}>
         <div className={styles.trackTitle}>
           <div className={styles.trackTitleImage}>
-            {currentTrack?.id === track.id ? (
+            {currentTrack?._id === track._id ? (
               <svg
                 className={
                   isPlaying
