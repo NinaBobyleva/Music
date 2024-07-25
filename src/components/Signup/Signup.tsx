@@ -24,6 +24,10 @@ export function Signup() {
   const handleSignUp = async (e: React.MouseEvent) => {
     e.preventDefault();
     try {
+      if (!inputValue.email || !inputValue.password || !inputValue.passwordTwo) {
+        alert('Введите данные для входа');
+        return;
+      }
       if (inputValue.password !== inputValue.passwordTwo) {
         return alert('Оба пароля должны совпадать');
       }

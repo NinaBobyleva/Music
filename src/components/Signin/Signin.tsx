@@ -25,6 +25,10 @@ export function Signin() {
   const handleSignin = async (e: React.MouseEvent) => {
     e.preventDefault();
     try {
+      if (!inputValue.email || !inputValue.password) {
+        alert('Введите данные для входа');
+        return;
+      }
       await Promise.all([
         dispatch(getTokens(inputValue)).unwrap(),
         dispatch(getUser(inputValue)).unwrap(),
