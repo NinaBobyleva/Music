@@ -1,5 +1,5 @@
 import { Tracks } from "@/components/Tracks/Tracks";
-import FavoriteLayout from "./favorite/layout";
+import FavoriteLayout from "./tracks/layout";
 
 export default async function Home() {
   return (

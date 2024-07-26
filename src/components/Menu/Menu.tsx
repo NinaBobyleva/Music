@@ -15,7 +15,7 @@ export function Menu() {
 
   const handleFavorite = () => {
     if (user) {
-      router.push("/favorite");
+      router.push("/tracks/favorite");
     } else {
       alert("Вы не авторизованы");
     }

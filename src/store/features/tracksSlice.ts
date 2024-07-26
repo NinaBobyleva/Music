@@ -14,6 +14,7 @@ export const getFavoriteTrack = createAsyncThunk(
 type InitialStateType = {
   currentPlaylist: TrackType[];
   likedPlaylist: TrackType[];
+  categoryPlaylist: TrackType[];
   currentTrack: TrackType | null;
   isPlaying: boolean;
   initialTracks: TrackType[];
@@ -23,6 +24,7 @@ type InitialStateType = {
 const initialState: InitialStateType = {
   currentPlaylist: [],
   likedPlaylist: [],
+  categoryPlaylist: [],
   currentTrack: null,
   isPlaying: false,
   initialTracks: [],
@@ -33,6 +35,9 @@ const tracksSlice = createSlice({
   name: "tracks",
   initialState,
   reducers: {
+    setCategoryPlaylist: (state, action: PayloadAction<TrackType[]>) => {
+      state.categoryPlaylist = action.payload;
+    },
     setCurrentPlaylist: (state, action: PayloadAction<TrackType[]>) => {
       state.currentPlaylist = action.payload;
       state.initialTracks = action.payload;
@@ -98,6 +103,7 @@ const tracksSlice = createSlice({
 
 export const {
   setCurrentPlaylist,
+  setCategoryPlaylist,
   setCurrentTrack,
   setPrev,
   setNext,

@@ -1,5 +1,5 @@
 import { Navigation } from "@/components/Navigation/Navigation";
-import styles from "../page.module.css";
+import styles from "./layout.module.css";
 import { CurrentTrackProvider } from "@/contexts/CurrentProvider";
 import { Search } from "@/components/Search/Search";
 import { Sidebar } from "@/components/Sidebar/Sidebar";
