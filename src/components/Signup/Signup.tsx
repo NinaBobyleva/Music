@@ -5,6 +5,7 @@ import { useState } from "react";
 import { signup } from "@/store/features/userSlice";
 import { useAppDispatch } from "@/store/store";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export function Signup() {
   const router = useRouter();
@@ -47,7 +48,7 @@ export function Signup() {
       <div className={styles.containerSignup}>
         <div className={styles.modalBlock}>
           <form className={styles.modalFormLogin}>
-            <a href="../">
+            <Link href="/">
               <div className={styles.modalLogo}>
                 <Image
                   alt="logo"
@@ -56,7 +57,7 @@ export function Signup() {
                   height={21}
                 />
               </div>
-            </a>
+            </Link>
             <input
               onChange={onChangedInput}
               className={styles.modalInput}

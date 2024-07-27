@@ -49,7 +49,7 @@ export function Signin() {
       <div className={styles.containerEnter}>
         <div className={styles.modalBlock}>
           <form action="#" className={styles.modalFormLogin}>
-            <a href="../">
+            <Link href="/">
               <div className={styles.modalLogo}>
                 <Image
                   alt="logo"
@@ -58,7 +58,7 @@ export function Signin() {
                   height={21}
                 />
               </div>
-            </a>
+            </Link>
             <input
               onChange={onChangedInput}
               className={classNames(styles.modalInput, styles.login)}

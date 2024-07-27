@@ -14,7 +14,7 @@ type TrackProps = {
 };
 
 export function Track({ track }: TrackProps) {
-  const { audioRef, handlePlay } = useCurrentTrack();
+  const { audioRef } = useCurrentTrack();
   const { name, author, album, duration_in_seconds} = track;
   const { currentTrack, isPlaying } = useAppSelector((state) => state.tracks);
   const dispatch = useAppDispatch();
@@ -22,7 +22,6 @@ export function Track({ track }: TrackProps) {
 
   const handleTrackClick = () => {
     dispatch(setCurrentTrack(track));
-    // handlePlay();
   };
 
   useEffect(() => {
