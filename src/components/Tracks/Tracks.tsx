@@ -1,27 +1,22 @@
-import { getTracks } from "@/api/tracks";
+'use client'
+import useAllTracks from "@/hooks/useAllTracks";
 import { Filter } from "../Filter/Filter";
 import { Playlist } from "../Playlist/Playlist";
 import styles from "./tracks.module.css"
-import { TrackType } from "@/types/tracks";
+import { useAppSelector } from "@/store/store";
 
 
-export async function Tracks() {
-  let tracks: TrackType[] = [];
-  let error = "";
+export function Tracks() {
   
-  try {
-    tracks = await getTracks();
-  } catch (err: unknown) {
-    error = err instanceof Error ? "Ошибка при загрузке треков " + err.message : "Неизвестная ошибка" ;
-    console.log(err);
-  }
-  console.log(tracks);
+  useAllTracks();
+  const allTracks = useAppSelector((state) => state.tracks.currentPlaylist);
+  const {error} = useAppSelector((state) => state.tracks);
   return (
     <>
       {error && error}
       <h2 className={styles.centerblockH2}>Треки</h2>
-      <Filter tracks={tracks} />
-      <Playlist tracks={tracks}/>
+      <Filter tracks={allTracks} />
+      <Playlist tracks={allTracks}/>
     </>
   );
 }

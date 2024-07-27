@@ -11,9 +11,9 @@ type PlaylistProps = {
 };
 
 export function Playlist({ tracks }: PlaylistProps) {
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
-  dispatch(setCurrentPlaylist(tracks));
+  // dispatch(setCurrentPlaylist(tracks));
 
   return (
     <div className={styles.centerblockContent}>

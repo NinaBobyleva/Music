@@ -16,7 +16,7 @@ export function TrackPlay({name, author, currentTrack}: TrackPlayProps) {
       <div className={styles.trackPlayContain}>
         <div className={styles.trackPlayImage}>
           <svg className={styles.trackPlaySvg}>
-            <use xlinkHref="img/icon/sprite.svg#icon-note" />
+            <use xlinkHref="/img/icon/sprite.svg#icon-note" />
           </svg>
         </div>
         <div className={styles.trackPlayAuthor}>
@@ -33,7 +33,7 @@ export function TrackPlay({name, author, currentTrack}: TrackPlayProps) {
       <div className={styles.trackPlayLikeDis}>
         <div onClick={handleLike} className={classNames(styles.trackPlayLike, styles.btnIcon)}>
           <svg className={styles.trackPlayLikeSvg}>
-            <use xlinkHref={isLiked ? "img/icon/sprite.svg#icon-active-like" : "img/icon/sprite.svg#icon-like"} />
+            <use xlinkHref={isLiked ? "/img/icon/sprite.svg#icon-active-like" : "/img/icon/sprite.svg#icon-like"} />
           </svg>
         </div>
       </div>

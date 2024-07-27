@@ -14,7 +14,7 @@ type TrackProps = {
 };
 
 export function Track({ track }: TrackProps) {
-  const { audioRef } = useCurrentTrack();
+  const { audioRef, handlePlay } = useCurrentTrack();
   const { name, author, album, duration_in_seconds} = track;
   const { currentTrack, isPlaying } = useAppSelector((state) => state.tracks);
   const dispatch = useAppDispatch();
@@ -22,6 +22,7 @@ export function Track({ track }: TrackProps) {
 
   const handleTrackClick = () => {
     dispatch(setCurrentTrack(track));
+    // handlePlay();
   };
 
   useEffect(() => {
@@ -43,11 +44,11 @@ export function Track({ track }: TrackProps) {
                     : styles.trackTitleSvg
                 }
               >
-                <use xlinkHref="img/icon/sprite.svg#icon-dot" />
+                <use xlinkHref="/img/icon/sprite.svg#icon-dot" />
               </svg>
             ) : (
               <svg className={styles.trackTitleSvg}>
-                <use xlinkHref="img/icon/sprite.svg#icon-note" />
+                <use xlinkHref="/img/icon/sprite.svg#icon-note" />
               </svg>
             )}
           </div>
@@ -65,7 +66,7 @@ export function Track({ track }: TrackProps) {
         </div>
         <div onClick={handleLike}>
           <svg className={styles.trackTimeSvg}>
-            <use xlinkHref={isLiked ? "img/icon/sprite.svg#icon-active-like" : "img/icon/sprite.svg#icon-like"} />
+            <use xlinkHref={isLiked ? "/img/icon/sprite.svg#icon-active-like" : "/img/icon/sprite.svg#icon-like"} />
           </svg>
           <span className={styles.trackTimeText}>{time}</span>
         </div>

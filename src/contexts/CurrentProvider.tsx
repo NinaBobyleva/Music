@@ -21,6 +21,7 @@ type CurrentTrackProviderProps = {
 export function CurrentTrackProvider({ children }: CurrentTrackProviderProps) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
+
   return (
     <CurrentTrackContext.Provider
       value={{

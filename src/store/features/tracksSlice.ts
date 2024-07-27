@@ -1,15 +1,23 @@
-import { fetchFavoriteTracks } from "@/api/tracks";
+import { fetchFavoriteTracks, getTracks } from "@/api/tracks";
 import { Tokens } from "@/types/tokens";
 import { TrackType } from "@/types/tracks";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export const getFavoriteTrack = createAsyncThunk(
-  "playlist/getFavoriteTracks",
+  "tracks/getFavoriteTracks",
   async ({ access, refresh }: Tokens) => {
     const favoriteTracks = fetchFavoriteTracks({ access, refresh });
     return favoriteTracks;
   }
 );
+
+export const getAllTracks = createAsyncThunk(
+  "tracks/getAllTracks",
+  async () => {
+    const allTracks = getTracks();
+    return allTracks;
+  }
+)
 
 type InitialStateType = {
   currentPlaylist: TrackType[];
@@ -18,7 +26,9 @@ type InitialStateType = {
   currentTrack: TrackType | null;
   isPlaying: boolean;
   initialTracks: TrackType[];
+  initialPlaylist: TrackType[];
   isShuffle: boolean;
+  error: unknown;
 };
 
 const initialState: InitialStateType = {
@@ -28,7 +38,9 @@ const initialState: InitialStateType = {
   currentTrack: null,
   isPlaying: false,
   initialTracks: [],
+  initialPlaylist: [],
   isShuffle: false,
+  error: "",
 };
 
 const tracksSlice = createSlice({
@@ -84,7 +96,7 @@ const tracksSlice = createSlice({
       state.likedPlaylist.splice(index, 1);
     },
     setLikeTrack: (state, action: PayloadAction<TrackType>) => {
-      state.likedPlaylist.push(action.payload);;
+      state.likedPlaylist.push(action.payload);
     },
   },
   extraReducers(builder) {
@@ -95,7 +107,17 @@ const tracksSlice = createSlice({
           state.likedPlaylist = action.payload;
         }
       )
+      .addCase(
+        getAllTracks.fulfilled,
+        (state, action: PayloadAction<TrackType[]>) => {
+          state.currentPlaylist = action.payload;
+        }
+      )
       .addCase(getFavoriteTrack.rejected, (state, action) => {
+        console.error("Error:", action.error.message);
+      })
+      .addCase(getAllTracks.rejected, (state, action) => {
+        state.error = action.payload;
         console.error("Error:", action.error.message);
       });
   },

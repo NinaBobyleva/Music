@@ -10,6 +10,11 @@ import { CurrentTimeBlock } from "./CurrentTimeBlock/CurrentTimeBlock";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { setIsPlaying, setNext } from "@/store/features/tracksSlice";
 
+// type BarProps = {
+//   handlePlay: () => void,
+//   handleSeek: (e: React.ChangeEvent<HTMLInputElement>) => void,
+// }
+
 export function Bar() {
   const { audioRef } = useCurrentTrack();
   const {currentTrack, isPlaying} = useAppSelector(
@@ -24,14 +29,13 @@ export function Bar() {
 
   useEffect(() => {
     audio?.addEventListener("ended", () => dispatch(setNext()));
-    audio?.play();
+    // audio?.play();
     return () => audio?.removeEventListener("ended", () => dispatch(setNext()));
   }, [audio, dispatch])
 
   const duration = audioRef.current?.duration || 0;
 
   const handlePlay = useCallback(() => {
-    const audio = audioRef.current;
     if (audio) {
       if (isPlaying) {
         audio.pause();
@@ -40,18 +44,17 @@ export function Bar() {
       }
     }
     dispatch(setIsPlaying(!isPlaying));
-  }, [audioRef, isPlaying, dispatch]);
+  }, [audio, isPlaying, dispatch]);
 
   const handleSeek = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    if (audioRef.current) {
+    if (audio) {
       if (isPlaying) {
-        audioRef.current.currentTime = Number(e.target.value);
+        audio.currentTime = Number(e.target.value);
       }
     }
-  }, [audioRef, isPlaying]);
+  }, [audio, isPlaying]);
 
   const handleLoop = useCallback(() => {
-    const audio = audioRef.current;
     if (audio) {
       if (isLoop) {
         audio.loop = false;
@@ -60,7 +63,7 @@ export function Bar() {
       }
     }
     setIsLoop((prev) => !prev);
-  }, [audioRef, isLoop, setIsLoop]);
+  }, [audio, isLoop, setIsLoop]);
 
   if (!currentTrack) {
     return null;
