@@ -48,7 +48,7 @@ export function Signup() {
       <div className={styles.containerSignup}>
         <div className={styles.modalBlock}>
           <form className={styles.modalFormLogin}>
-            <Link href="/">
+            <Link href="/tracks">
               <div className={styles.modalLogo}>
                 <Image
                   alt="logo"

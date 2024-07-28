@@ -4,32 +4,30 @@ import { Player } from "../Player/Player";
 import { TrackPlay } from "../TrackPlay/TrackPlay";
 import { Volume } from "../Volume/Volume";
 import styles from "./bar.module.css";
-import { useCallback, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useCallback, useEffect, useState } from "react";
 import ProgressBar from "./ProgressBar/ProgressBar";
 import { CurrentTimeBlock } from "./CurrentTimeBlock/CurrentTimeBlock";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { setIsPlaying, setNext } from "@/store/features/tracksSlice";
 
-// type BarProps = {
-//   handlePlay: () => void,
-//   handleSeek: (e: React.ChangeEvent<HTMLInputElement>) => void,
-// }
+type BarProps = {
+  currentTime: number,
+  setCurrentTime: Dispatch<SetStateAction<number>>,
+}
 
-export function Bar() {
+export function Bar({currentTime, setCurrentTime}: BarProps) {
   const { audioRef } = useCurrentTrack();
   const {currentTrack, isPlaying} = useAppSelector(
     (state) => state.tracks
   );
   const dispatch = useAppDispatch();
   
-  const [currentTime, setCurrentTime] = useState<number>(0);
   const [isLoop, setIsLoop] = useState<boolean>(false);
 
   const audio = audioRef.current;
 
   useEffect(() => {
     audio?.addEventListener("ended", () => dispatch(setNext()));
-    // audio?.play();
     return () => audio?.removeEventListener("ended", () => dispatch(setNext()));
   }, [audio, dispatch])
 
@@ -74,15 +72,7 @@ export function Bar() {
   return (
     <div className={styles.bar}>
       <div className={styles.barContent}>
-        <audio
-          className={styles.audio}
-          ref={audioRef}
-          controls
-          src={track_file}
-          onTimeUpdate={(e) => {
-            setCurrentTime(e.currentTarget.currentTime);
-          }}
-        ></audio>
+        
         <ProgressBar
           max={duration}
           value={currentTime}

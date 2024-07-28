@@ -3,18 +3,12 @@ import { TrackType } from "@/types/tracks";
 import { Track } from "../Track/Track";
 import styles from "./playlist.module.css";
 import classNames from "classnames";
-import { useAppDispatch } from "@/store/store";
-import { setCurrentPlaylist } from "@/store/features/tracksSlice";
 
 type PlaylistProps = {
   tracks: TrackType[];
 };
 
 export function Playlist({ tracks }: PlaylistProps) {
-  // const dispatch = useAppDispatch();
-
-  // dispatch(setCurrentPlaylist(tracks));
-
   return (
     <div className={styles.centerblockContent}>
       <div className={styles.contentTitle}>

@@ -1,10 +1,15 @@
-import { Tracks } from "@/components/Tracks/Tracks";
-import FavoriteLayout from "./tracks/layout";
+'use client'
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
-export default async function Home() {
-  return (
-    <FavoriteLayout>
-      <Tracks />
-    </FavoriteLayout>
-  );
-}
+const HomePage = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace('/tracks');
+  }, [router]);
+
+  return null;
+};
+
+export default HomePage;

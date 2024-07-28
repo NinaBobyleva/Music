@@ -5,8 +5,10 @@ import styles from "./favoriteTracks.module.css";
 import { useAppSelector } from "@/store/store";
 
 export function FavoriteTracks() {
-  const {likedPlaylist} = useAppSelector((state) => state.tracks);
-  
+  const { favoritePlaylist: likedPlaylist } = useAppSelector(
+    (state) => state.tracks
+  );
+
   return (
     <>
       <h2 className={styles.centerblockH2}>Мои треки</h2>

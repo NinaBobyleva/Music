@@ -10,7 +10,7 @@ export function Navigation() {
   return (
     <nav className={styles.mainNav}>
       <div className={styles.navLogo}>
-        <Link href="/">
+        <Link href="/tracks">
         <Image
           className={styles.logoImage}
           src="/img/logo.png"

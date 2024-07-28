@@ -33,7 +33,7 @@ export function Signin() {
         dispatch(getTokens(inputValue)).unwrap(),
         dispatch(getUser(inputValue)).unwrap(),
       ]);
-      router.push("/");
+      router.push("/tracks");
       console.log("Успешно!");
     } catch (error: unknown) {
       if (error instanceof Error) {
@@ -49,7 +49,7 @@ export function Signin() {
       <div className={styles.containerEnter}>
         <div className={styles.modalBlock}>
           <form action="#" className={styles.modalFormLogin}>
-            <Link href="/">
+            <Link href="/tracks">
               <div className={styles.modalLogo}>
                 <Image
                   alt="logo"

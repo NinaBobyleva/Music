@@ -7,7 +7,7 @@ const useLikeTrack = (track: TrackType) => {
   const { tokens } = useAppSelector((state) => state.user);
   const trackId = track._id;
   const dispatch = useAppDispatch();
-  const likedTracks = useAppSelector((state) => state.tracks.likedPlaylist);
+  const likedTracks = useAppSelector((state) => state.tracks.favoritePlaylist);
   const isLiked = !!likedTracks.find(
     (track: TrackType) => track._id === trackId
   );
@@ -31,7 +31,7 @@ const useLikeTrack = (track: TrackType) => {
     }
   };
 
-  return {handleLike, isLiked};
+  return { handleLike, isLiked };
 };
 
 export default useLikeTrack;

@@ -11,6 +11,7 @@ export function Tracks() {
   useAllTracks();
   const allTracks = useAppSelector((state) => state.tracks.currentPlaylist);
   const {error} = useAppSelector((state) => state.tracks);
+  
   return (
     <>
       {error && error}
