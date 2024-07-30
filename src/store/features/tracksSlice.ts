@@ -45,6 +45,9 @@ const tracksSlice = createSlice({
   name: "tracks",
   initialState,
   reducers: {
+    setCurrentPlaylist: (state, action: PayloadAction<TrackType[]>) => {
+      state.currentPlaylist = action.payload;
+    },
     setCategoryPlaylist: (state, action: PayloadAction<TrackType[]>) => {
       state.categoryPlaylist = action.payload;
     },
@@ -122,6 +125,7 @@ const tracksSlice = createSlice({
 
 export const {
   setCategoryPlaylist,
+  setCurrentPlaylist,
   setCurrentTrack,
   setPrev,
   setNext,

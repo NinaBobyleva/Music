@@ -26,7 +26,8 @@ function Category({ params }: CategoryProps) {
         console.log(res.items);
         name.current = res.name;
         const items = res.items;
-        const tracks = items.map((item: number) => currentPlaylist.find((track) => track._id === item)).filter(Boolean);
+        console.log(items);
+        const tracks = items.map((item: number) => currentPlaylist.filter((track) => track._id === item)).flat();
         console.log(tracks);
         dispatch(setCategoryPlaylist(tracks));
       })

@@ -37,7 +37,7 @@ export const Player = React.memo(({
     <div className={styles.playerControls}>
       <div onClick={handlePrevTrack} className={styles.playerBtnPrev}>
         <svg className={styles.playerBtnPrevSvg}>
-          <use xlinkHref="img/icon/sprite.svg#icon-prev" />
+          <use xlinkHref="/img/icon/sprite.svg#icon-prev" />
         </svg>
       </div>
       <div
@@ -46,17 +46,17 @@ export const Player = React.memo(({
       >
         {isPlaying ? (
           <svg className={styles.playerBtnPlaySvg}>
-            <use xlinkHref="img/icon/sprite.svg#icon-pause" />
+            <use xlinkHref="/img/icon/sprite.svg#icon-pause" />
           </svg>
         ) : (
           <svg className={styles.playerBtnPlaySvg}>
-            <use xlinkHref="img/icon/sprite.svg#icon-play" />
+            <use xlinkHref="/img/icon/sprite.svg#icon-play" />
           </svg>
         )}
       </div>
       <div onClick={handleNextTrack} className={styles.playerBtnNext}>
         <svg className={styles.playerBtnNextSvg}>
-          <use xlinkHref="img/icon/sprite.svg#icon-next" />
+          <use xlinkHref="/img/icon/sprite.svg#icon-next" />
         </svg>
       </div>
       <div
@@ -70,7 +70,7 @@ export const Player = React.memo(({
               : styles.playerBtnRepeatSvg
           }
         >
-          <use xlinkHref="img/icon/sprite.svg#icon-repeat" />
+          <use xlinkHref="/img/icon/sprite.svg#icon-repeat" />
         </svg>
       </div>
       <div
@@ -84,7 +84,7 @@ export const Player = React.memo(({
               : styles.playerBtnShuffleSvg
           }
         >
-          <use xlinkHref="img/icon/sprite.svg#icon-shuffle" />
+          <use xlinkHref="/img/icon/sprite.svg#icon-shuffle" />
         </svg>
       </div>
     </div>
