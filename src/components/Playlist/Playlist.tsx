@@ -3,12 +3,10 @@ import { TrackType } from "@/types/tracks";
 import { Track } from "../Track/Track";
 import styles from "./playlist.module.css";
 import classNames from "classnames";
+import { useAppSelector } from "@/store/store";
 
-type PlaylistProps = {
-  tracks: TrackType[];
-};
-
-export function Playlist({ tracks }: PlaylistProps) {
+export function Playlist() {
+  const tracks = useAppSelector((state) => state.tracks.currentPlaylist);
   return (
     <div className={styles.centerblockContent}>
       <div className={styles.contentTitle}>

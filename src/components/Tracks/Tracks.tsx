@@ -9,8 +9,6 @@ import { setCurrentPlaylist, setInitialPlaylist } from "@/store/features/tracksS
 
 
 export function Tracks() {
-
-  const allTracks = useAppSelector((state) => state.tracks.currentPlaylist);
   const dispatch = useAppDispatch();
   useEffect(() => {
     try {
@@ -27,8 +25,8 @@ export function Tracks() {
     <>
       {/* {error && error} */}
       <h2 className={styles.centerblockH2}>Треки</h2>
-      <Filter tracks={allTracks} />
-      <Playlist tracks={allTracks}/>
+      <Filter />
+      <Playlist />
     </>
   );
 }

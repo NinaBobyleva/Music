@@ -1,18 +1,15 @@
 "use client";
-import { TrackType } from "@/types/tracks";
 import styles from "./filter.module.css";
 import { getUniqueValues } from "@/utils/getUniqueValues";
 import { FilterItem } from "./FilterItem/FilterItem";
 import { useState } from "react";
+import { useAppSelector } from "@/store/store";
 
 const SORT_OPTIONS = ["По умолчанию", "Сначала новые", "Сначала старые"];
 
-type FilterProps = {
-  tracks: TrackType[];
-};
-
-export function Filter({ tracks }: FilterProps) {
+export function Filter() {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
+  const tracks = useAppSelector((state) => state.tracks.currentPlaylist);
 
   const handleFilterOpen = (filterName: string) => {
     setActiveFilter((prev) => (prev === filterName ? null : filterName));

@@ -15,7 +15,6 @@ type CategoryProps = {
 
 function Category({ params }: CategoryProps) {
   const dispatch = useAppDispatch();
-  const allTracks = useAppSelector((state) => state.tracks.currentPlaylist);
   const {initialPlaylist} = useAppSelector((state) => state.tracks);
 
   const name = useRef();
@@ -26,7 +25,6 @@ function Category({ params }: CategoryProps) {
         name.current = res.name;
         const items = res.items;
         const tracks = items.map((item: number) => initialPlaylist.filter((track) => track._id === item)).flat();
-        console.log(tracks);
         dispatch(setCurrentPlaylist(tracks));
       })
     } catch (error) {
@@ -38,8 +36,8 @@ function Category({ params }: CategoryProps) {
   return (
     <>
       <h2 className={styles.centerblockH2}>{name.current}</h2>
-      <Filter tracks={allTracks} />
-      <Playlist tracks={allTracks} />
+      <Filter />
+      <Playlist />
     </>
   );
 };
