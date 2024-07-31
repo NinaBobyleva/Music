@@ -3,38 +3,37 @@ import styles from "../../layout.module.css";
 import { getCategoryTracks } from "@/api/tracks";
 import { Filter } from "@/components/Filter/Filter";
 import { Playlist } from "@/components/Playlist/Playlist";
-import { setCategoryPlaylist } from "@/store/features/tracksSlice";
+import { setCurrentPlaylist } from "@/store/features/tracksSlice";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { useEffect, useRef } from "react";
 
 type CategoryProps = {
   params: {
-    id: number;
+    id: string;
   }
 };
 
 function Category({ params }: CategoryProps) {
   const dispatch = useAppDispatch();
-  const allTracks = useAppSelector((state) => state.tracks.categoryPlaylist);
-  const {currentPlaylist} = useAppSelector((state) => state.tracks);
+  const allTracks = useAppSelector((state) => state.tracks.currentPlaylist);
+  const {initialPlaylist} = useAppSelector((state) => state.tracks);
 
   const name = useRef();
   
   useEffect(() => {
     try {
       getCategoryTracks(params.id).then((res) => {
-        console.log(res.items);
         name.current = res.name;
         const items = res.items;
-        console.log(items);
-        const tracks = items.map((item: number) => currentPlaylist.filter((track) => track._id === item)).flat();
+        const tracks = items.map((item: number) => initialPlaylist.filter((track) => track._id === item)).flat();
         console.log(tracks);
-        dispatch(setCategoryPlaylist(tracks));
+        dispatch(setCurrentPlaylist(tracks));
       })
     } catch (error) {
       
     }
-  }, [dispatch, params.id, currentPlaylist, name]);
+  }, [dispatch, params.id, initialPlaylist, name]);
+  
 
   return (
     <>

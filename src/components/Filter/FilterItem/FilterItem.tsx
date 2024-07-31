@@ -55,13 +55,13 @@ export function FilterItem({
             {list.map((item, index) => (
               <li key={index} className={styles.filterList}>
                 <p
-                  onClick={() => {
-                    setCounter((prev) => prev === list.indexOf(item) ? counter + 1 : counter -1);
-                    if (title === "исполнителю") {
-                      setIsOpen(true);
-                    }
-                    console.log(list.indexOf(item));
-                  }}
+                  // onClick={() => {
+                  //   setCounter((prev) => (prev ? counter - 1 : counter + 1));
+                  //   if (title === "исполнителю") {
+                  //     setIsOpen(true);
+                  //   }
+                  //   console.log(list.indexOf(item));
+                  // }}
                   className={styles.item}
                 >
                   {item}

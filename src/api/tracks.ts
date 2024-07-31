@@ -15,7 +15,7 @@ export async function getTracks() {
   return response.data;
 }
 
-export async function getCategoryTracks(id: number) {
+export async function getCategoryTracks(id: string) {
   const res = await fetch(BASE_URL + `/catalog/selection/${id}/`);
   if (!res.ok) {
     throw new Error(res.statusText);

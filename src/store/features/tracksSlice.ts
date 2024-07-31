@@ -1,4 +1,4 @@
-import { fetchFavoriteTracks, getTracks } from "@/api/tracks";
+import { fetchFavoriteTracks } from "@/api/tracks";
 import { Tokens } from "@/types/tokens";
 import { TrackType } from "@/types/tracks";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
@@ -11,18 +11,9 @@ export const getFavoriteTrack = createAsyncThunk(
   }
 );
 
-export const getAllTracks = createAsyncThunk(
-  "tracks/getAllTracks",
-  async () => {
-    const allTracks = getTracks();
-    return allTracks;
-  }
-);
-
 type InitialStateType = {
   currentPlaylist: TrackType[];
   favoritePlaylist: TrackType[];
-  categoryPlaylist: TrackType[];
   currentTrack: TrackType | null;
   isPlaying: boolean;
   initialPlaylist: TrackType[];
@@ -33,7 +24,6 @@ type InitialStateType = {
 const initialState: InitialStateType = {
   currentPlaylist: [],
   favoritePlaylist: [],
-  categoryPlaylist: [],
   currentTrack: null,
   isPlaying: false,
   initialPlaylist: [],
@@ -48,8 +38,8 @@ const tracksSlice = createSlice({
     setCurrentPlaylist: (state, action: PayloadAction<TrackType[]>) => {
       state.currentPlaylist = action.payload;
     },
-    setCategoryPlaylist: (state, action: PayloadAction<TrackType[]>) => {
-      state.categoryPlaylist = action.payload;
+    setInitialPlaylist: (state, action: PayloadAction<TrackType[]>) => {
+      state.initialPlaylist = action.payload;
     },
     setCurrentTrack: (state, action: PayloadAction<TrackType>) => {
       state.currentTrack = action.payload;
@@ -106,26 +96,15 @@ const tracksSlice = createSlice({
           state.favoritePlaylist = action.payload;
         }
       )
-      .addCase(
-        getAllTracks.fulfilled,
-        (state, action: PayloadAction<TrackType[]>) => {
-          state.currentPlaylist = action.payload;
-          state.initialPlaylist = action.payload;
-        }
-      )
       .addCase(getFavoriteTrack.rejected, (state, action) => {
-        console.error("Error:", action.error.message);
-      })
-      .addCase(getAllTracks.rejected, (state, action) => {
-        state.error = action.payload;
         console.error("Error:", action.error.message);
       });
   },
 });
 
 export const {
-  setCategoryPlaylist,
   setCurrentPlaylist,
+  setInitialPlaylist,
   setCurrentTrack,
   setPrev,
   setNext,
