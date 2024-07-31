@@ -23,7 +23,7 @@ export function Playlist({ tracks }: PlaylistProps) {
         </div>
         <div className={classNames(styles.playlistTitleCol, styles.col04)}>
           <svg className={styles.playlistTitleSvg}>
-            <use xlinkHref="img/icon/sprite.svg#icon-watch" />
+            <use xlinkHref="/img/icon/sprite.svg#icon-watch" />
           </svg>
         </div>
       </div>
