@@ -2,7 +2,7 @@
 import { Filter } from "../Filter/Filter";
 import { Playlist } from "../Playlist/Playlist";
 import styles from "./tracks.module.css"
-import { useAppDispatch, useAppSelector } from "@/store/store";
+import { useAppDispatch } from "@/store/store";
 import { getTracks } from "@/api/tracks";
 import { useEffect } from "react";
 import { setCurrentPlaylist, setInitialPlaylist } from "@/store/features/tracksSlice";

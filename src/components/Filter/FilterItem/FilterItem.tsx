@@ -20,7 +20,7 @@ export function FilterItem({
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   // const handleFilter = () => {
-  //   const filterTracks = 
+  //   // const filterTracks = 
   // }
 
   return (
@@ -28,6 +28,7 @@ export function FilterItem({
       <div
         onClick={() => {
           handleFilterOpen(title);
+          console.log(list);
           setIsOpen(false);
           setCounter(0);
         }}
@@ -60,13 +61,16 @@ export function FilterItem({
             {list.map((item, index) => (
               <li key={index} className={styles.filterList}>
                 <p
-                  // onClick={() => {
-                  //   setCounter((prev) => (prev ? counter - 1 : counter + 1));
-                  //   if (title === "исполнителю") {
-                  //     setIsOpen(true);
-                  //   }
-                  //   console.log(list.indexOf(item));
-                  // }}
+                  onClick={() => {
+                    let names: string[] = [];
+                    const result = list.forEach(el => !names.includes(el) ? names.push(el) : 0);
+                    console.log(names);
+                    // setCounter((prev) => (prev ? counter - 1 : counter + 1));
+                    if (title === "исполнителю") {
+                      setIsOpen(true);
+                    }
+                    // console.log(list.indexOf(item));
+                  }}
                   className={styles.item}
                 >
                   {item}
