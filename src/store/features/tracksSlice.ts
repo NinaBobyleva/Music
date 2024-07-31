@@ -13,20 +13,22 @@ export const getFavoriteTrack = createAsyncThunk(
 
 type InitialStateType = {
   currentPlaylist: TrackType[];
+  initialPlaylist: TrackType[];
   favoritePlaylist: TrackType[];
   currentTrack: TrackType | null;
   isPlaying: boolean;
-  initialPlaylist: TrackType[];
+  initialTracks: TrackType[];
   isShuffle: boolean;
   error: unknown;
 };
 
 const initialState: InitialStateType = {
   currentPlaylist: [],
+  initialPlaylist: [],
   favoritePlaylist: [],
   currentTrack: null,
   isPlaying: false,
-  initialPlaylist: [],
+  initialTracks: [],
   isShuffle: false,
   error: "",
 };
@@ -37,6 +39,7 @@ const tracksSlice = createSlice({
   reducers: {
     setCurrentPlaylist: (state, action: PayloadAction<TrackType[]>) => {
       state.currentPlaylist = action.payload;
+      state.initialTracks = action.payload;
     },
     setInitialPlaylist: (state, action: PayloadAction<TrackType[]>) => {
       state.initialPlaylist = action.payload;
@@ -75,7 +78,7 @@ const tracksSlice = createSlice({
       );
       state.currentPlaylist = state.isShuffle
         ? shuffleTracks
-        : state.initialPlaylist;
+        : state.initialTracks;
     },
     setDislikeTrack: (state, action: PayloadAction<TrackType>) => {
       console.log(action.payload);
