@@ -14,7 +14,7 @@ type FilterProps = {
 export function Filter({ tracks }: FilterProps) {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
 
-  const handleFilter = (filterName: string) => {
+  const handleFilterOpen = (filterName: string) => {
     setActiveFilter((prev) => (prev === filterName ? null : filterName));
   };
 
@@ -44,7 +44,7 @@ export function Filter({ tracks }: FilterProps) {
           key={index}
           title={filter.title}
           isActive={activeFilter === filter.title}
-          handleFilter={handleFilter}
+          handleFilterOpen={handleFilterOpen}
           list={filter.list}
         />
       ))}

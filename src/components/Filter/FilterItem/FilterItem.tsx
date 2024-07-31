@@ -6,23 +6,28 @@ import { useState } from "react";
 type FilterItemProps = {
   title: string;
   isActive: boolean;
-  handleFilter: (newFilter: string) => void;
+  handleFilterOpen: (newFilter: string) => void;
   list: string[];
 };
 
 export function FilterItem({
   title,
   isActive,
-  handleFilter,
+  handleFilterOpen,
   list,
 }: FilterItemProps) {
   const [counter, setCounter] = useState<number>(0);
   const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  // const handleFilter = () => {
+  //   const filterTracks = 
+  // }
+
   return (
     <div className={styles.filterWrapper}>
       <div
         onClick={() => {
-          handleFilter(title);
+          handleFilterOpen(title);
           setIsOpen(false);
           setCounter(0);
         }}

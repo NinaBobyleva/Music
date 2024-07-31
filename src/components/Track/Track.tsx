@@ -6,7 +6,7 @@ import { timeFormat } from "../../utils/helpers";
 import { useEffect } from "react";
 import classNames from "classnames";
 import { useAppDispatch, useAppSelector } from "@/store/store";
-import { setCurrentTrack } from "@/store/features/tracksSlice";
+import { setCurrentPlaylist, setCurrentTrack } from "@/store/features/tracksSlice";
 import useLikeTrack from "@/hooks/useLikeTrack";
 
 type TrackProps = {
@@ -16,12 +16,13 @@ type TrackProps = {
 export function Track({ track }: TrackProps) {
   const { audioRef } = useCurrentTrack();
   const { name, author, album, duration_in_seconds} = track;
-  const { currentTrack, isPlaying } = useAppSelector((state) => state.tracks);
+  const { currentTrack, isPlaying, currentPlaylist } = useAppSelector((state) => state.tracks);
   const dispatch = useAppDispatch();
   const {isLiked, handleLike} = useLikeTrack(track);
 
   const handleTrackClick = () => {
     dispatch(setCurrentTrack(track));
+    // dispatch(setCurrentPlaylist(currentPlaylist));
   };
 
   useEffect(() => {

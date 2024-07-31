@@ -1,17 +1,21 @@
 "use client";
+import { setCurrentPlaylist } from "@/store/features/tracksSlice";
 import { Filter } from "../Filter/Filter";
 import { Playlist } from "../Playlist/Playlist";
 import styles from "./favoriteTracks.module.css";
-import { useAppSelector } from "@/store/store";
+import { useAppDispatch, useAppSelector } from "@/store/store";
 
 export function FavoriteTracks() {
-  const { favoritePlaylist } = useAppSelector((state) => state.tracks);
+  const allTracks = useAppSelector((state) => state.tracks.favoritePlaylist);
+
+  const dispatch = useAppDispatch();
+  dispatch(setCurrentPlaylist(allTracks));
 
   return (
     <>
       <h2 className={styles.centerblockH2}>Мои треки</h2>
-      <Filter tracks={favoritePlaylist} />
-      <Playlist tracks={favoritePlaylist} />
+      <Filter tracks={allTracks} />
+      <Playlist tracks={allTracks} />
     </>
   );
 }
