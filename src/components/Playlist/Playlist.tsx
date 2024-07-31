@@ -3,18 +3,10 @@ import { TrackType } from "@/types/tracks";
 import { Track } from "../Track/Track";
 import styles from "./playlist.module.css";
 import classNames from "classnames";
-import { useAppDispatch } from "@/store/store";
-import { setCurrentPlaylist } from "@/store/features/tracksSlice";
+import { useAppSelector } from "@/store/store";
 
-type PlaylistProps = {
-  tracks: TrackType[];
-};
-
-export function Playlist({ tracks }: PlaylistProps) {
-  const dispatch = useAppDispatch();
-
-  dispatch(setCurrentPlaylist(tracks));
-
+export function Playlist() {
+  const tracks = useAppSelector((state) => state.tracks.currentPlaylist);
   return (
     <div className={styles.centerblockContent}>
       <div className={styles.contentTitle}>
@@ -29,7 +21,7 @@ export function Playlist({ tracks }: PlaylistProps) {
         </div>
         <div className={classNames(styles.playlistTitleCol, styles.col04)}>
           <svg className={styles.playlistTitleSvg}>
-            <use xlinkHref="img/icon/sprite.svg#icon-watch" />
+            <use xlinkHref="/img/icon/sprite.svg#icon-watch" />
           </svg>
         </div>
       </div>

@@ -15,7 +15,7 @@ export function Menu() {
 
   const handleFavorite = () => {
     if (user) {
-      router.push("/favorite");
+      router.push("/tracks/favorite");
     } else {
       alert("Вы не авторизованы");
     }
@@ -25,7 +25,7 @@ export function Menu() {
     <div className={styles.navMenu}>
       <ul className={styles.menuList}>
         <li className={styles.menuItem}>
-          <Link className={styles.menuLink} href="/">
+          <Link className={styles.menuLink} href="/tracks">
             Главное
           </Link>
         </li>

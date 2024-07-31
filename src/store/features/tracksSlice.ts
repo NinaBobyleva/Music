@@ -4,7 +4,7 @@ import { TrackType } from "@/types/tracks";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export const getFavoriteTrack = createAsyncThunk(
-  "playlist/getFavoriteTracks",
+  "tracks/getFavoriteTracks",
   async ({ access, refresh }: Tokens) => {
     const favoriteTracks = fetchFavoriteTracks({ access, refresh });
     return favoriteTracks;
@@ -13,20 +13,24 @@ export const getFavoriteTrack = createAsyncThunk(
 
 type InitialStateType = {
   currentPlaylist: TrackType[];
-  likedPlaylist: TrackType[];
+  initialPlaylist: TrackType[];
+  favoritePlaylist: TrackType[];
   currentTrack: TrackType | null;
   isPlaying: boolean;
   initialTracks: TrackType[];
   isShuffle: boolean;
+  error: unknown;
 };
 
 const initialState: InitialStateType = {
   currentPlaylist: [],
-  likedPlaylist: [],
+  initialPlaylist: [],
+  favoritePlaylist: [],
   currentTrack: null,
   isPlaying: false,
   initialTracks: [],
   isShuffle: false,
+  error: "",
 };
 
 const tracksSlice = createSlice({
@@ -36,6 +40,9 @@ const tracksSlice = createSlice({
     setCurrentPlaylist: (state, action: PayloadAction<TrackType[]>) => {
       state.currentPlaylist = action.payload;
       state.initialTracks = action.payload;
+    },
+    setInitialPlaylist: (state, action: PayloadAction<TrackType[]>) => {
+      state.initialPlaylist = action.payload;
     },
     setCurrentTrack: (state, action: PayloadAction<TrackType>) => {
       state.currentTrack = action.payload;
@@ -75,11 +82,13 @@ const tracksSlice = createSlice({
     },
     setDislikeTrack: (state, action: PayloadAction<TrackType>) => {
       console.log(action.payload);
-      const index = state.likedPlaylist.findIndex((track) => track._id === action.payload._id);
-      state.likedPlaylist.splice(index, 1);
+      const index = state.favoritePlaylist.findIndex(
+        (track) => track._id === action.payload._id
+      );
+      state.favoritePlaylist.splice(index, 1);
     },
     setLikeTrack: (state, action: PayloadAction<TrackType>) => {
-      state.likedPlaylist.push(action.payload);;
+      state.favoritePlaylist.push(action.payload);
     },
   },
   extraReducers(builder) {
@@ -87,7 +96,7 @@ const tracksSlice = createSlice({
       .addCase(
         getFavoriteTrack.fulfilled,
         (state, action: PayloadAction<TrackType[]>) => {
-          state.likedPlaylist = action.payload;
+          state.favoritePlaylist = action.payload;
         }
       )
       .addCase(getFavoriteTrack.rejected, (state, action) => {
@@ -98,6 +107,7 @@ const tracksSlice = createSlice({
 
 export const {
   setCurrentPlaylist,
+  setInitialPlaylist,
   setCurrentTrack,
   setPrev,
   setNext,

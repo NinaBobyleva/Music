@@ -12,26 +12,24 @@ import { setIsPlaying, setNext } from "@/store/features/tracksSlice";
 
 export function Bar() {
   const { audioRef } = useCurrentTrack();
-  const {currentTrack, isPlaying} = useAppSelector(
-    (state) => state.tracks
-  );
+  const { currentTrack, isPlaying } = useAppSelector((state) => state.tracks);
   const dispatch = useAppDispatch();
-  
   const [currentTime, setCurrentTime] = useState<number>(0);
+
+  const track_file = currentTrack?.track_file;
+
   const [isLoop, setIsLoop] = useState<boolean>(false);
 
   const audio = audioRef.current;
 
   useEffect(() => {
     audio?.addEventListener("ended", () => dispatch(setNext()));
-    audio?.play();
     return () => audio?.removeEventListener("ended", () => dispatch(setNext()));
-  }, [audio, dispatch])
+  }, [audio, dispatch]);
 
   const duration = audioRef.current?.duration || 0;
 
   const handlePlay = useCallback(() => {
-    const audio = audioRef.current;
     if (audio) {
       if (isPlaying) {
         audio.pause();
@@ -40,18 +38,20 @@ export function Bar() {
       }
     }
     dispatch(setIsPlaying(!isPlaying));
-  }, [audioRef, isPlaying, dispatch]);
+  }, [audio, isPlaying, dispatch]);
 
-  const handleSeek = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.currentTime = Number(e.target.value);
+  const handleSeek = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (audio) {
+        if (isPlaying) {
+          audio.currentTime = Number(e.target.value);
+        }
       }
-    }
-  }, [audioRef, isPlaying]);
+    },
+    [audio, isPlaying]
+  );
 
   const handleLoop = useCallback(() => {
-    const audio = audioRef.current;
     if (audio) {
       if (isLoop) {
         audio.loop = false;
@@ -60,13 +60,13 @@ export function Bar() {
       }
     }
     setIsLoop((prev) => !prev);
-  }, [audioRef, isLoop, setIsLoop]);
+  }, [audio, isLoop, setIsLoop]);
 
   if (!currentTrack) {
     return null;
   }
 
-  const { name, author, track_file } = currentTrack;
+  const { name, author } = currentTrack;
 
   return (
     <div className={styles.bar}>
@@ -94,7 +94,11 @@ export function Bar() {
               handleLoop={handleLoop}
               isLoop={isLoop}
             />
-            <TrackPlay currentTrack={currentTrack} name={name} author={author} />
+            <TrackPlay
+              currentTrack={currentTrack}
+              name={name}
+              author={author}
+            />
           </div>
           <div className={styles.wrapper}>
             <Volume audio={audioRef.current} />

@@ -4,6 +4,7 @@ import styles from "./sidebar.module.css";
 import { logout } from "@/store/features/userSlice";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import useInitializeLikedTracks from "@/hooks/useInitializeLikedTracks";
+import Link from "next/link";
 
 export function Sidebar() {
   const { user } = useAppSelector((state) => state.user);
@@ -19,7 +20,7 @@ export function Sidebar() {
           <p className={styles.sidebarPersonalName}>{user.username}</p>
           <div onClick={handleLogout} className={styles.sidebarIcon}>
             <svg>
-              <use xlinkHref="img/icon/sprite.svg#logout" />
+              <use xlinkHref="/img/icon/sprite.svg#logout" />
             </svg>
           </div>
         </div>
@@ -29,7 +30,7 @@ export function Sidebar() {
       <div className={styles.sidebarBlock}>
         <div className={styles.sidebarList}>
           <div className={styles.sidebarItem}>
-            <a className={styles.sidebarLink} href="#">
+            <Link className={styles.sidebarLink} href="/tracks/category/2">
               <Image
                 alt="day's playlist"
                 className={styles.sidebarImg}
@@ -37,10 +38,10 @@ export function Sidebar() {
                 width={250}
                 height={150}
               />
-            </a>
+            </Link>
           </div>
           <div className={styles.sidebarItem}>
-            <a className={styles.sidebarLink} href="#">
+            <Link className={styles.sidebarLink} href="/tracks/category/3">
               <Image
                 alt="day's playlist"
                 className={styles.sidebarImg}
@@ -48,10 +49,10 @@ export function Sidebar() {
                 width={250}
                 height={150}
               />
-            </a>
+            </Link>
           </div>
           <div className={styles.sidebarItem}>
-            <a className={styles.sidebarLink} href="#">
+            <Link className={styles.sidebarLink} href="/tracks/category/4">
               <Image
                 alt="day's playlist"
                 className={styles.sidebarImg}
@@ -59,7 +60,7 @@ export function Sidebar() {
                 width={250}
                 height={150}
               />
-            </a>
+            </Link>
           </div>
         </div>
       </div>

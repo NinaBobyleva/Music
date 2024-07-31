@@ -20,7 +20,7 @@ export function Volume({audio}: VolumeProps) {
       <div className={styles.volumeContent}>
         <div className={styles.volumeImage}>
           <svg className={styles.volumeSvg}>
-            <use xlinkHref="img/icon/sprite.svg#icon" />
+            <use xlinkHref="/img/icon/sprite.svg#icon" />
           </svg>
         </div>
         <div className={classNames(styles.volumeProgress, styles.btn)}>
