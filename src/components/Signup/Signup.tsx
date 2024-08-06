@@ -3,13 +3,13 @@ import styles from "./signup.module.css";
 import Image from "next/image";
 import { useState } from "react";
 import { signup } from "@/store/features/userSlice";
-import { useAppDispatch } from "@/store/store";
+import { useAppDispatch, useAppSelector } from "@/store/store";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export function Signup() {
+  const error = useAppSelector((state) => state.user.error);
   const router = useRouter();
-  const [error, setError] = useState("");
   const dispatch = useAppDispatch();
   const [inputValue, setInputValue] = useState({
     email: "",
@@ -34,13 +34,8 @@ export function Signup() {
       }
       await dispatch(signup(inputValue)).unwrap();
       router.push("/login");
-      console.log("Успешно!");
     } catch (error: unknown) {
-      if (error instanceof Error) {
-        setError(error.message);
-      } else {
-        setError("Неизвестная ошибка");
-      }
+      console.error("error");
     }
   };
   return (

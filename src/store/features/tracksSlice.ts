@@ -26,7 +26,8 @@ type InitialStateType = {
   isPlaying: boolean;
   initialTracks: TrackType[];
   isShuffle: boolean;
-  error: unknown;
+  isLoading: boolean;
+  error: string;
 };
 
 const initialState: InitialStateType = {
@@ -44,6 +45,7 @@ const initialState: InitialStateType = {
   isPlaying: false,
   initialTracks: [],
   isShuffle: false,
+  isLoading: true,
   error: "",
 };
 
@@ -96,7 +98,6 @@ const tracksSlice = createSlice({
         : state.initialTracks;
     },
     setDislikeTrack: (state, action: PayloadAction<TrackType>) => {
-      console.log(action.payload);
       const index = state.favoritePlaylist.findIndex(
         (track) => track._id === action.payload._id
       );
@@ -104,9 +105,6 @@ const tracksSlice = createSlice({
     },
     setLikeTrack: (state, action: PayloadAction<TrackType>) => {
       state.favoritePlaylist.push(action.payload);
-    },
-    setFilteredPlaylist: (state, action: PayloadAction<TrackType[]>) => {
-      state.currentPlaylist = action.payload;
     },
     setFilters: (state, action: PayloadAction<{
       author?: string[];
@@ -166,6 +164,9 @@ const tracksSlice = createSlice({
       };
       state.filteredPlaylist = state.currentPlaylist;
     },
+    setIsLoading: (state, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload;
+    }
   },
   extraReducers(builder) {
     builder
@@ -176,8 +177,10 @@ const tracksSlice = createSlice({
         }
       )
       .addCase(getFavoriteTrack.rejected, (state, action) => {
-        state.error = action.payload;
-        console.error("Error:", action.error.message);
+        if (action.error.message) {
+          state.error = action.error.message;
+          console.error("Error:", action.error.message);
+        }
       });
   },
 });
@@ -186,7 +189,6 @@ export const {
   setCurrentPlaylist,
   setInitialPlaylist,
   setCurrentTrack,
-  setFilteredPlaylist,
   setFilters,
   setPrev,
   setNext,
@@ -194,6 +196,7 @@ export const {
   setIsPlaying,
   setDislikeTrack,
   setLikeTrack,
-  resetFilters
+  resetFilters,
+  setIsLoading
 } = tracksSlice.actions;
 export const tracksReducers = tracksSlice.reducer;

@@ -32,12 +32,14 @@ type AuthStateType = {
   user: UserType | null;
   authState: boolean;
   tokens: Tokens | null;
+  error: string;
 };
 
 const initialState: AuthStateType = {
   user: null,
   authState: false,
   tokens: null,
+  error: "",
 };
 
 const userSlice = createSlice({
@@ -65,10 +67,16 @@ const userSlice = createSlice({
         state.user = action.payload;
       })
       .addCase(getUser.rejected, (state, action) => {
-        console.error("Error:", action.error.message);
+        if (action.error.message) {
+          state.error = action.error.message;
+          console.error("Error:", action.error.message);
+        }
       })
       .addCase(signup.rejected, (state, action) => {
-        console.error("Error:", action.error.message);
+        if (action.error.message) {
+          state.error = action.error.message;
+          console.error("Error:", action.error.message);
+        }
       });
   },
 });

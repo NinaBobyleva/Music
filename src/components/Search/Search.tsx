@@ -5,17 +5,6 @@ import { useAppDispatch } from "@/store/store";
 import { resetFilters, setFilters } from "@/store/features/tracksSlice";
 
 export function Search() {
-  // const { initialPlaylist } = useAppSelector((state) => state.tracks);
-  // const dispatch = useAppDispatch();
-  // const [search, setSearch] = useState("");
-
-  // useEffect(() => {
-  //   const searchTracks = initialPlaylist.filter((track) =>
-  //     track.name.toLowerCase().includes(search.toLowerCase())
-  //   );
-  //   dispatch(setCurrentPlaylist(searchTracks));
-  // }, [dispatch, initialPlaylist, search]);
-
   const dispatch = useAppDispatch();
   const [search, setSearch] = useState<string>("");
 
@@ -42,7 +31,6 @@ export function Search() {
           name="search"
           placeholder="Поиск"
           type="search"
-          // onChange={(e) => setSearch(e.target.value)}
         />
       </div>
     </div>

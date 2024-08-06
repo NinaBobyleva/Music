@@ -63,7 +63,7 @@ export function Track({ track }: TrackProps) {
         <div className={styles.trackAlbum}>
           <span className={styles.trackAlbumLink}>{album}</span>
         </div>
-        <div onClick={handleLike}>
+        <div className={styles.trackTimeBlock} onClick={handleLike}>
           <svg className={styles.trackTimeSvg}>
             <use xlinkHref={isLiked ? "/img/icon/sprite.svg#icon-active-like" : "/img/icon/sprite.svg#icon-like"} />
           </svg>

@@ -80,11 +80,17 @@
     line-height: 24px;
     color: #696969;
   }
+
+  .trackTimeBlock {
+    width: 70px;
+    display: flex;
+    align-items: center;
+  }
   
   .trackTimeSvg {
     width: 16px;
     height: 14px;
-    margin-right: 17px;
+    margin-right: 15px;
     fill: transparent;
     stroke: #696969;
   }

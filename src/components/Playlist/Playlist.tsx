@@ -4,8 +4,9 @@ import styles from "./playlist.module.css";
 import classNames from "classnames";
 import { useAppSelector } from "@/store/store";
 
-export function Playlist({isLoading}: {isLoading: boolean}) {
+export function Playlist() {
   const tracks = useAppSelector((state) => state.tracks.filteredPlaylist);
+  const isLoading = useAppSelector((state) => state.tracks.isLoading);
   return (
     <div className={styles.centerblockContent}>
       <div className={styles.contentTitle}>
