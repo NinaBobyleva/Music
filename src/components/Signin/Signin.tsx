@@ -3,14 +3,14 @@ import styles from "./signin.module.css";
 import Image from "next/image";
 import classNames from "classnames";
 import Link from "next/link";
-import { useAppDispatch } from "@/store/store";
+import { useAppDispatch, useAppSelector } from "@/store/store";
 import { useState } from "react";
 import { getTokens, getUser } from "@/store/features/userSlice";
 import { useRouter } from "next/navigation";
 
 export function Signin() {
+  const error = useAppSelector((state) => state.user.error);
   const router = useRouter();
-  const [error, setError] = useState("");
   const dispatch = useAppDispatch();
   const [inputValue, setInputValue] = useState({
     email: "",
@@ -34,13 +34,8 @@ export function Signin() {
         dispatch(getUser(inputValue)).unwrap(),
       ]);
       router.push("/tracks");
-      console.log("Успешно!");
     } catch (error: unknown) {
-      if (error instanceof Error) {
-        setError(error.message);
-      } else {
-        setError("Неизвестная ошибка");
-      }
+      console.error("error");
     }
   };
 

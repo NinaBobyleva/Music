@@ -19,7 +19,6 @@ export async function fetchToken({ email, password }: {email:string, password: s
 }
 
 export async function refreshToken(refresh: string) {
-  console.log(refresh);
   const res = await fetch(`${USER_URL}token/refresh/`, {
     method: "POST",
     body: JSON.stringify({
@@ -32,6 +31,5 @@ export async function refreshToken(refresh: string) {
   if (!res.ok) {
     throw new Error(res.statusText);
   }
-  console.log(res);
   return res.json();
 }

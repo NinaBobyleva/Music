@@ -7,23 +7,29 @@ export async function fetchUser({
   email: string;
   password: string;
 }) {
-  const res = await fetch(`${USER_URL}login/`, {
-    method: "POST",
-    body: JSON.stringify({
-      email,
-      password,
-    }),
-    headers: {
-      "Content-type": "application/json",
-    },
-  });
-  const json = await res.json();
+  try {
+    const res = await fetch(`${USER_URL}login/`, {
+      method: "POST",
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+    const json = await res.json();
 
-  if (!res.ok) {
-    throw new Error(json.detail);
+    if (!res.ok) {
+      throw new Error(json.message);
+    }
+
+    return json;
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    }
   }
-
-  return json;
 }
 
 export async function fetchUserSignup({
@@ -33,23 +39,28 @@ export async function fetchUserSignup({
   email: string;
   password: string;
 }) {
-  const res = await fetch(`${USER_URL}signup/`, {
-    method: "POST",
-    body: JSON.stringify({
-      email,
-      password,
-      username: email,
-    }),
-    headers: {
-      "content-type": "application/json",
-    },
-  });
-  const json = await res.json();
-  console.log(json);
+  try {
+    const res = await fetch(`${USER_URL}signup/`, {
+      method: "POST",
+      body: JSON.stringify({
+        email,
+        password,
+        username: email,
+      }),
+      headers: {
+        "content-type": "application/json",
+      },
+    });
+    const json = await res.json();
 
-  if (!res.ok) {
-    throw new Error(json.detail);
+    if (!res.ok) {
+      throw new Error(json.message);
+    }
+
+    return json;
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    }
   }
-
-  return json;
 }

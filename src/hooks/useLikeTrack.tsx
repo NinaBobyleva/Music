@@ -22,7 +22,6 @@ const useLikeTrack = (track: TrackType) => {
       await action({ trackId, access: tokens.access, refresh: tokens.refresh });
       if (isLiked) {
         dispatch(setDislikeTrack(track));
-        console.log(track);
       } else {
         dispatch(setLikeTrack(track));
       }
