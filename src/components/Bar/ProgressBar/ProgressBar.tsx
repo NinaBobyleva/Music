@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./ProgressBar.module.css";
+import styles from "./progressBar.module.css";
 
 type ProgressBarProps = {
     max: number,
